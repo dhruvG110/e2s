@@ -1,6 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { ShoppingCart } from "lucide-react";
 import type { Tables } from "@/integrations/supabase/types";
 
 interface CourseCardProps {
@@ -33,14 +35,23 @@ export default function CourseCard({ course }: CourseCardProps) {
         )}
         <h3 className="font-display font-semibold text-lg line-clamp-1 mb-1">{course.title}</h3>
         <p className="text-sm text-muted-foreground line-clamp-2 mb-3">{course.description}</p>
-        <div className="flex items-center gap-2">
-          <span className="font-display font-bold text-lg gradient-text">₹{discountedPrice.toFixed(0)}</span>
-          {course.discount && course.discount > 0 && (
-            <>
-              <span className="text-sm text-muted-foreground line-through">₹{course.price.toFixed(0)}</span>
-              <Badge className="gradient-bg text-xs border-0">{course.discount}% OFF</Badge>
-            </>
-          )}
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <span className="font-display font-bold text-lg gradient-text">₹{discountedPrice.toFixed(0)}</span>
+            {course.discount && course.discount > 0 && (
+              <>
+                <span className="text-sm text-muted-foreground line-through">₹{course.price.toFixed(0)}</span>
+                <Badge className="gradient-bg text-xs border-0">{course.discount}% OFF</Badge>
+              </>
+            )}
+          </div>
+          <Button
+            size="sm"
+            className="gradient-bg glow-button text-xs gap-1"
+            onClick={(e) => { e.stopPropagation(); navigate(`/courses/${course.id}`); }}
+          >
+            <ShoppingCart className="h-3 w-3" /> Buy Now
+          </Button>
         </div>
       </CardContent>
     </Card>
