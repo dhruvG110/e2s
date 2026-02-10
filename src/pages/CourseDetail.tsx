@@ -54,13 +54,15 @@ export default function CourseDetail() {
 
   const applyPromo = async () => {
     if (!promoCode.trim()) return;
-    const { data } = await supabase.from("promo_codes").select("*").eq("code", promoCode.trim().toUpperCase()).eq("is_active", true).maybeSingle();
-    if (data) {
-      setDiscount(data.discount_percent);
+    const res = await supabase.functions.invoke("apply-promo-code", {
+      body: { code: promoCode.trim().toUpperCase() },
+    });
+    if (res.data?.valid) {
+      setDiscount(res.data.discount_percent);
       setPromoApplied(true);
-      toast.success(`Promo applied! ${data.discount_percent}% extra off`);
+      toast.success(`Promo applied! ${res.data.discount_percent}% extra off`);
     } else {
-      toast.error("Invalid or expired promo code");
+      toast.error(res.data?.error || "Invalid or expired promo code");
     }
   };
 
