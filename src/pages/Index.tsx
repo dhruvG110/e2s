@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import Footer from "@/components/Footer";
+import ParticleBackground from "@/components/ParticleBackground";
 import { ArrowRight, Sparkles, Star, Quote } from "lucide-react";
 import { motion } from "framer-motion";
 const courses = [{
@@ -39,7 +40,8 @@ const testimonials = [{
 }];
 export default function Index() {
   const navigate = useNavigate();
-  return <div className="min-h-screen">
+  return <div className="min-h-screen overflow-x-hidden">
+      <ParticleBackground />
       {/* Hero */}
       <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden pt-16">
         <div className="absolute top-1/4 left-1/4 h-72 w-72 rounded-full bg-primary/20 blur-[120px] animate-glow-pulse" />

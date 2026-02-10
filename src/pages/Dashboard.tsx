@@ -13,7 +13,8 @@ export default function Dashboard() {
       const { data } = await supabase
         .from("purchases")
         .select("*, courses(*)")
-        .eq("user_id", user!.id);
+        .eq("user_id", user!.id)
+        .gte("expires_at", new Date().toISOString());
       return data ?? [];
     },
     enabled: !!user,

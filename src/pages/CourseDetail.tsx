@@ -40,8 +40,16 @@ export default function CourseDetail() {
     queryKey: ["purchased", id, user?.id],
     queryFn: async () => {
       if (!user) return false;
-      const { data } = await supabase.from("purchases").select("id").eq("user_id", user.id).eq("course_id", id!).maybeSingle();
-      return !!data;
+      const { data } = await supabase
+        .from("purchases")
+        .select("id, expires_at")
+        .eq("user_id", user.id)
+        .eq("course_id", id!)
+        .maybeSingle();
+      if (!data) return false;
+      // Check if purchase is still valid (not expired)
+      if (data.expires_at && new Date(data.expires_at) < new Date()) return false;
+      return true;
     },
     enabled: !!id && !!user,
   });

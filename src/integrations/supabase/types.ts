@@ -188,6 +188,7 @@ export type Database = {
           amount_paid: number
           course_id: string
           created_at: string
+          expires_at: string
           id: string
           promo_code_used: string | null
           razorpay_payment_id: string | null
@@ -197,6 +198,7 @@ export type Database = {
           amount_paid: number
           course_id: string
           created_at?: string
+          expires_at?: string
           id?: string
           promo_code_used?: string | null
           razorpay_payment_id?: string | null
@@ -206,6 +208,7 @@ export type Database = {
           amount_paid?: number
           course_id?: string
           created_at?: string
+          expires_at?: string
           id?: string
           promo_code_used?: string | null
           razorpay_payment_id?: string | null
