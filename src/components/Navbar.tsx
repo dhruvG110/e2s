@@ -19,7 +19,7 @@ export default function Navbar() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2">
           <GraduationCap className="h-7 w-7 text-primary" />
-          <span className="font-display text-xl font-bold gradient-text">LearnPro</span>
+          <span className="font-display text-xl font-bold gradient-text">Edit2Scale</span>
         </Link>
 
         {/* Desktop nav */}
