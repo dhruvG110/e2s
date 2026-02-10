@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, useRef, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import type { User, Session } from "@supabase/supabase-js";
 
@@ -23,57 +23,57 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
-  const initializedRef = useRef(false);
-
-  const checkAdminRole = async (userId: string) => {
-    try {
-      const { data } = await supabase.rpc("has_role", { _user_id: userId, _role: "admin" });
-      setIsAdmin(!!data);
-    } catch {
-      setIsAdmin(false);
-    }
-  };
 
   useEffect(() => {
     let isMounted = true;
 
-    // Initial session load
-    const initialize = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!isMounted) return;
-
-      setSession(session);
-      setUser(session?.user ?? null);
-
-      if (session?.user) {
-        await checkAdminRole(session.user.id);
+    const checkAdmin = async (userId: string) => {
+      try {
+        const { data } = await supabase
+          .from("user_roles")
+          .select("role")
+          .eq("user_id", userId)
+          .eq("role", "admin")
+          .maybeSingle();
+        if (isMounted) setIsAdmin(!!data);
+      } catch {
+        if (isMounted) setIsAdmin(false);
       }
-
-      initializedRef.current = true;
-      setLoading(false);
     };
 
-    // Listen for ongoing auth changes
+    // Set up listener FIRST but don't control loading from it
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
+      (_event, newSession) => {
         if (!isMounted) return;
-        setSession(session);
-        setUser(session?.user ?? null);
-
-        if (session?.user) {
-          await checkAdminRole(session.user.id);
+        setSession(newSession);
+        setUser(newSession?.user ?? null);
+        if (newSession?.user) {
+          // Use setTimeout to avoid Supabase deadlock with async in callback
+          setTimeout(() => checkAdmin(newSession.user.id), 0);
         } else {
           setIsAdmin(false);
-        }
-
-        // Only set loading false here if initial load already completed
-        if (initializedRef.current) {
-          setLoading(false);
         }
       }
     );
 
-    initialize();
+    // Initial load — controls loading state
+    const init = async () => {
+      try {
+        const { data: { session: s } } = await supabase.auth.getSession();
+        if (!isMounted) return;
+        setSession(s);
+        setUser(s?.user ?? null);
+        if (s?.user) {
+          await checkAdmin(s.user.id);
+        }
+      } catch (err) {
+        console.error("Auth init error:", err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
+    init();
 
     return () => {
       isMounted = false;
@@ -83,6 +83,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signOut = async () => {
     await supabase.auth.signOut();
+    setIsAdmin(false);
   };
 
   return (
