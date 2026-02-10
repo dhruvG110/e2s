@@ -70,7 +70,7 @@ export default function Index() {
 
             <h1 className="font-display text-4xl font-bold leading-tight md:text-6xl">
               Master Video Editing &{" "}
-              <span className="gradient-text">Scale Your Business</span>
+              <span className="gradient-text">Become Earners</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
               Learn Alight Motion, CapCut Pro, and client acquisition strategies. Everything you need to become a successful video editor and scale your freelance business.
