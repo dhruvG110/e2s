@@ -43,7 +43,7 @@ serve(async (req) => {
         "Content-Type": "application/json",
         Authorization: "Basic " + btoa(`${RAZORPAY_KEY_ID}:${RAZORPAY_KEY_SECRET}`),
       },
-      body: JSON.stringify({ amount, currency: "INR", receipt: `course_${courseId}` }),
+      body: JSON.stringify({ amount, currency: "INR", receipt: `crs_${courseId.substring(0, 35)}` }),
     });
 
     const order = await rzpRes.json();
