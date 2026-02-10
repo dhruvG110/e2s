@@ -81,7 +81,7 @@ export default function CourseDetail() {
         key: razorpayKeyId,
         amount: Math.round(finalPrice * 100),
         currency: "INR",
-        name: "LearnPro",
+        name: "Edit2Scale",
         description: course.title,
         order_id: orderId,
         handler: async (response: any) => {
@@ -186,9 +186,15 @@ export default function CourseDetail() {
                 )}
 
                 {purchased ? (
-                  <Button className="w-full gradient-bg glow-button" onClick={() => navigate(`/course/${id}/learn`)}>
-                    Continue Learning
-                  </Button>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 rounded-lg bg-green-500/10 border border-green-500/30 p-3">
+                      <CheckCircle className="h-5 w-5 text-green-500" />
+                      <span className="text-sm font-medium text-green-500">Already Purchased</span>
+                    </div>
+                    <Button className="w-full gradient-bg glow-button" onClick={() => navigate(`/course/${id}/learn`)}>
+                      Continue Learning
+                    </Button>
+                  </div>
                 ) : (
                   <Button className="w-full gradient-bg glow-button" onClick={handleBuy}>
                     Buy Now
