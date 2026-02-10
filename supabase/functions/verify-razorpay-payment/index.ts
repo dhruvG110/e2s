@@ -62,12 +62,17 @@ serve(async (req) => {
 
     const { data: payment } = await adminClient.from("razorpay_payments").select("id").eq("order_id", razorpay_order_id).maybeSingle();
 
+    // Set expiry to 3 years from now
+    const expiresAt = new Date();
+    expiresAt.setFullYear(expiresAt.getFullYear() + 3);
+
     await adminClient.from("purchases").insert({
       user_id: userId,
       course_id: courseId,
       amount_paid: amountPaid,
       razorpay_payment_id: payment?.id,
       promo_code_used: promoCode || null,
+      expires_at: expiresAt.toISOString(),
     });
 
     if (promoCode) {
