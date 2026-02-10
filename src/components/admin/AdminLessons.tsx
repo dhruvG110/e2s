@@ -74,10 +74,10 @@ export default function AdminLessons() {
       <div className="flex flex-wrap justify-between items-center gap-4 mb-6">
         <h2 className="font-display text-xl font-semibold">Manage Lessons</h2>
         <div className="flex gap-2">
-          <Select value={selectedCourse} onValueChange={setSelectedCourse}>
+          <Select value={selectedCourse || "all"} onValueChange={v => setSelectedCourse(v === "all" ? "" : v)}>
             <SelectTrigger className="w-48 bg-secondary"><SelectValue placeholder="All courses" /></SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All courses</SelectItem>
+              <SelectItem value="all">All courses</SelectItem>
               {courses?.map(c => <SelectItem key={c.id} value={c.id}>{c.title}</SelectItem>)}
             </SelectContent>
           </Select>
