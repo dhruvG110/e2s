@@ -104,7 +104,7 @@ export default function Index() {
             <p className="text-sm font-medium text-primary uppercase tracking-wider mb-2">Complete Bundle</p>
             <h2 className="font-display text-3xl font-bold md:text-4xl">
               All 3 Courses for just{" "}
-              <span className="gradient-text">₹2,199</span>
+              <span className="gradient-text">₹6,199</span>
             </h2>
             <p className="mt-3 text-muted-foreground">
               Get lifetime access to Alight Motion Mastery, CapCut Pro Editing, and Client Scaling — one price, unlimited growth.
@@ -152,7 +152,7 @@ export default function Index() {
                   <h3 className="font-display text-lg font-semibold">{course.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{course.description}</p>
                   <div className="mt-4 flex items-center justify-between">
-                    <span className="gradient-text font-bold text-lg">₹2,199</span>
+                    <span className="gradient-text font-bold text-lg">₹6,199</span>
                     <span className="text-xs text-muted-foreground bg-primary/10 px-2 py-1 rounded-full">Bundle Deal</span>
                   </div>
                 </div>
