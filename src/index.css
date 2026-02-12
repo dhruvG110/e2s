@@ -62,13 +62,13 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Outfit', sans-serif;
     overflow-x: hidden;
     max-width: 100vw;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
   }
 }
 
@@ -116,13 +116,18 @@
   .glow-button {
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px hsl(25 95% 55% / 0.3), 0 0 30px hsl(270 80% 65% / 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 20px hsl(25 95% 55% / 0.35), 0 0 40px hsl(270 80% 65% / 0.2);
+    border-radius: 9999px;
   }
 
   .glow-button:hover {
-    box-shadow: 0 0 25px hsl(25 95% 55% / 0.5), 0 0 50px hsl(270 80% 65% / 0.3);
-    transform: translateY(-1px);
+    box-shadow: 0 0 30px hsl(25 95% 55% / 0.6), 0 0 60px hsl(270 80% 65% / 0.4);
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  .glow-button:active {
+    transform: translateY(0) scale(0.98);
   }
 
   .glow-input:focus-within {
