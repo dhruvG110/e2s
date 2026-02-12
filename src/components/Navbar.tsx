@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
-import { GraduationCap, Menu, X, LogOut } from "lucide-react";
+import { Menu, X, LogOut } from "lucide-react";
 import { useState } from "react";
+import logoText from "@/assets/logo_txt.png";
 
 export default function Navbar() {
   const { user, signOut } = useAuth();
@@ -25,8 +26,7 @@ export default function Navbar() {
         {/* Logo - centered on mobile */}
         <div className="flex flex-1 items-center justify-center md:justify-start md:flex-none">
           <Link to="/" className="flex items-center gap-2">
-            <GraduationCap className="h-7 w-7 text-primary" />
-            <span className="font-display text-xl font-bold gradient-text">Edit2Scale</span>
+            <img src={logoText} alt="Edit2Scale" className="h-8" />
           </Link>
         </div>
 
@@ -60,7 +60,7 @@ export default function Navbar() {
           ) : (
             <>
               <Button variant="ghost" size="sm" onClick={() => { navigate("/signin"); setMobileOpen(false); }}>Sign In</Button>
-              <Button size="sm" className="gradient-bg" onClick={() => { navigate("/signup"); setMobileOpen(false); }}>Sign Up</Button>
+              <Button size="sm" className="gradient-bg glow-button" onClick={() => { navigate("/signup"); setMobileOpen(false); }}>Sign Up</Button>
             </>
           )}
         </div>
