@@ -2,9 +2,11 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import Footer from "@/components/Footer";
 import ParticleBackground from "@/components/ParticleBackground";
+import AnimatedGradientBg from "@/components/AnimatedGradientBg";
 import { ArrowRight, Check, ChevronLeft, ChevronRight, ArrowDown, Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import logoImg from "@/assets/logo_img.png";
 
 const courses = [
   {
@@ -60,27 +62,33 @@ export default function Index() {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden bg-background">
       <ParticleBackground />
 
-      {/* Hero */}
+      {/* Hero with animated gradient bg */}
       <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden pt-20">
+        <AnimatedGradientBg />
         <div className="container relative z-10 mx-auto px-6 text-center md:text-left max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            {/* Logo placeholder — user will provide logo later */}
-            <div className="mx-auto mb-10 h-32 w-32 rounded-2xl bg-card border border-border/50 flex items-center justify-center md:mx-0">
-              <span className="text-muted-foreground text-sm">Logo</span>
-            </div>
+            {/* Logo image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mx-auto mb-10 md:mx-0"
+            >
+              <img src={logoImg} alt="Edit2Scale" className="h-32 w-32 object-contain" />
+            </motion.div>
 
-            <h1 className="font-display text-5xl font-bold leading-[1.1] md:text-7xl gradient-text-warm">
+            <h1 className="text-6xl font-black leading-[1.05] md:text-8xl lg:text-9xl gradient-text-warm">
               Where Editors Become Earners
             </h1>
 
-            <p className="mt-6 text-lg font-display font-semibold text-muted-foreground md:text-xl">
+            <p className="mt-6 text-lg font-semibold text-muted-foreground md:text-xl">
               Become the top 1% of the kiln
             </p>
 
@@ -95,7 +103,7 @@ export default function Index() {
                 "Monetize your skills instantly",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-3 text-foreground">
-                  <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                  <Check className="h-5 w-5 text-accent flex-shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -105,18 +113,20 @@ export default function Index() {
       </section>
 
       {/* Creator Asset Hub */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
+      <section className="relative py-16">
+        <AnimatedGradientBg />
+        <div className="container relative z-10 mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mx-auto max-w-md rounded-2xl border border-border/50 bg-card/80 p-8 text-center"
+            className="mx-auto max-w-md rounded-2xl border border-border/50 p-8 text-center"
+            style={{ backgroundColor: "hsl(0 0% 8%)" }}
           >
-            <h2 className="font-display text-2xl font-bold">
+            <h2 className="text-2xl font-bold">
               Spice up your edits with the
             </h2>
-            <p className="gradient-text font-display text-xl font-bold mt-1">
+            <p className="gradient-text text-xl font-bold mt-1">
               Creator Asset Hub
             </p>
             <p className="mt-3 text-sm text-muted-foreground">
@@ -173,11 +183,11 @@ export default function Index() {
               </div>
             </div>
 
-            <p className="mt-8 text-sm text-primary flex items-center justify-center gap-2">
+            <p className="mt-8 text-sm text-accent flex items-center justify-center gap-2">
               <ArrowDown className="h-4 w-4" />
               Learn faster with curated creator profiles
             </p>
-            <ArrowDown className="mx-auto mt-2 h-5 w-5 text-primary/50" />
+            <ArrowDown className="mx-auto mt-2 h-5 w-5 text-accent/50" />
 
             <Button
               size="lg"
@@ -199,7 +209,7 @@ export default function Index() {
             viewport={{ once: true }}
             className="text-center mb-10"
           >
-            <h2 className="font-display text-3xl font-bold md:text-4xl">
+            <h2 className="text-3xl font-bold md:text-4xl">
               Helping creators find the{" "}
               <span className="gradient-text">exact skills they need</span>
             </h2>
@@ -226,7 +236,6 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Nav arrows */}
             <button
               onClick={prevTestimonial}
               className="absolute left-0 top-1/2 -translate-x-6 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
@@ -252,7 +261,7 @@ export default function Index() {
             viewport={{ once: true }}
             className="mb-10 text-center"
           >
-            <h2 className="font-display text-3xl font-bold md:text-4xl">
+            <h2 className="text-3xl font-bold md:text-4xl">
               Check out our <span className="gradient-text">newest courses</span>
             </h2>
           </motion.div>
@@ -265,11 +274,11 @@ export default function Index() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group glow-card rounded-2xl border border-border/50 bg-card/80 overflow-hidden cursor-pointer"
+                className="group rounded-2xl border border-border/50 bg-card/80 overflow-hidden cursor-pointer course-card-hover"
                 onClick={() => navigate("/courses")}
               >
                 <div className="p-5">
-                  <h3 className="font-display text-lg font-bold">{course.title}</h3>
+                  <h3 className="text-lg font-bold">{course.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{course.description}</p>
 
                   <div className="mt-4 aspect-video rounded-xl bg-secondary/30 border border-border/30 overflow-hidden flex items-center justify-center">
@@ -280,7 +289,7 @@ export default function Index() {
                     <span className="text-sm text-muted-foreground line-through">
                       {course.originalPrice}
                     </span>
-                    <span className="font-display text-2xl font-bold text-foreground">
+                    <span className="text-2xl font-bold text-foreground">
                       {course.price}
                     </span>
                   </div>
@@ -289,7 +298,7 @@ export default function Index() {
                 <div className="border-t border-border/30 p-4">
                   <Button
                     variant="outline"
-                    className="w-full rounded-full border-border hover:border-primary/50"
+                    className="w-full rounded-full border-border hover:border-accent/50 hover:gradient-bg hover:text-white transition-all"
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate("/courses");
@@ -311,12 +320,13 @@ export default function Index() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="mx-auto max-w-2xl rounded-2xl border border-primary/30 bg-primary/5 p-8 glow-card"
+            className="mx-auto max-w-2xl rounded-2xl border border-accent/30 bg-accent/5 p-8"
+            style={{ boxShadow: "0 0 40px hsl(25 95% 55% / 0.1), 0 0 80px hsl(270 80% 65% / 0.05)" }}
           >
-            <p className="text-sm font-medium text-primary uppercase tracking-wider mb-2">
+            <p className="text-sm font-medium text-accent uppercase tracking-wider mb-2">
               Complete Bundle
             </p>
-            <h2 className="font-display text-3xl font-bold md:text-4xl">
+            <h2 className="text-3xl font-bold md:text-4xl">
               All 3 Courses for just{" "}
               <span className="gradient-text">₹6,199</span>
             </h2>
