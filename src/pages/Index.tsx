@@ -65,106 +65,117 @@ export default function Index() {
     <div className="min-h-screen overflow-x-hidden bg-background">
       <ParticleBackground />
 
-      {/* Hero with animated gradient bg */}
-      <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden pt-20">
-        <AnimatedGradientBg />
-        <div className="container relative z-10 mx-auto px-6 text-center md:text-left max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            {/* Logo image */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mx-auto mb-10 md:mx-0"
-            >
-              <img src={logoImg} alt="Edit2Scale" className="h-32 w-32 object-contain" />
-            </motion.div>
-
-            <h1 className="text-6xl font-black leading-[1.05] md:text-8xl lg:text-9xl gradient-text-warm">
-              Where Editors Become Earners
-            </h1>
-
-            <p className="mt-6 text-lg font-semibold text-muted-foreground md:text-xl">
-              Become the top 1% of the kiln
-            </p>
-
-            <p className="mt-6 text-base text-muted-foreground md:text-lg">
-              No random tutorials, No confusion, No wasted years
-            </p>
-
-            <ul className="mt-8 flex flex-col gap-3 text-left">
-              {[
-                "Master After Effects & CapCut",
-                "Project-based learning",
-                "Monetize your skills instantly",
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-3 text-foreground">
-                  <Check className="h-5 w-5 text-accent flex-shrink-0" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Creator Asset Hub */}
-      <section className="relative py-16">
+      {/* Hero — two-column layout matching reference */}
+      <section className="relative min-h-screen overflow-hidden pt-24 pb-16">
         <AnimatedGradientBg />
         <div className="container relative z-10 mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mx-auto max-w-md rounded-2xl border border-border/50 p-8 text-center"
-            style={{ backgroundColor: "hsl(0 0% 8%)" }}
-          >
-            <h2 className="text-2xl font-bold">
-              Spice up your edits with the
-            </h2>
-            <p className="gradient-text text-xl font-bold mt-1">
-              Creator Asset Hub
-            </p>
-            <p className="mt-3 text-sm text-muted-foreground">
-              Access a handpicked pool of vetted reusable assets from top creators
-            </p>
+          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-16 mt-8 lg:mt-20">
+            {/* Left column */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7 }}
+              className="flex-1 text-center lg:text-left"
+            >
+              {/* Logo */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mb-8"
+              >
+                <img src={logoImg} alt="Edit2Scale" className="h-20 w-20 object-contain mx-auto lg:mx-0" />
+              </motion.div>
 
-            <div className="mt-6 flex items-center rounded-full border border-border bg-secondary/50 px-4 py-2">
-              <input
-                type="text"
-                placeholder="Video Editing Effects, T..."
-                className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
-                readOnly
-              />
-              <Button size="sm" className="rounded-full gradient-bg glow-button px-5">
-                <Search className="h-4 w-4 mr-1" /> Search
-              </Button>
-            </div>
+              <h1 className="text-5xl font-black leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl gradient-text">
+                Where Editors<br />Become Earners
+              </h1>
 
-            <div className="mt-6 aspect-video rounded-xl bg-secondary/30 border border-border/30 overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=225&fit=crop"
-                alt="Asset preview"
-                className="h-full w-full object-cover"
-              />
-            </div>
+              <p className="mt-6 text-lg font-semibold text-muted-foreground md:text-xl">
+                Become the top <span className="text-accent">1%</span> of the kiln
+              </p>
 
-            <p className="mt-4 text-xs text-muted-foreground text-left">Try these searches</p>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {searchTags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-border px-3 py-1 text-xs text-foreground"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </motion.div>
+              <p className="mt-4 text-base text-muted-foreground">
+                No random tutorials, No confusion, No wasted years
+              </p>
+
+              <ul className="mt-8 flex flex-col gap-3 text-left mx-auto lg:mx-0 w-fit">
+                {[
+                  "Master After Effects & CapCut",
+                  "Project-based learning",
+                  "Monetize your skills instantly",
+                ].map((item) => (
+                  <motion.li
+                    key={item}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="flex items-center gap-3 text-foreground"
+                  >
+                    <Check className="h-5 w-5 text-accent flex-shrink-0" />
+                    <span>{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Right column — Creator Asset Hub */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="w-full max-w-md lg:max-w-lg flex-shrink-0"
+            >
+              <div
+                className="rounded-2xl border border-border/40 p-8 text-center"
+                style={{ backgroundColor: "hsl(0 0% 12%)" }}
+              >
+                <h2 className="text-xl font-bold md:text-2xl">
+                  Spice up your edits with the
+                </h2>
+                <p className="gradient-text text-lg font-bold mt-1 md:text-xl">
+                  Creator Asset Hub
+                </p>
+                <p className="mt-3 text-sm text-muted-foreground">
+                  Access a handpicked pool of vetted reusable assets from top creators
+                </p>
+
+                <div className="mt-6 flex items-center rounded-full border border-border/60 bg-secondary/40 pl-5 pr-1.5 py-1.5">
+                  <input
+                    type="text"
+                    placeholder="Video Editing Effects, Transitions, Templates..."
+                    className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
+                    readOnly
+                  />
+                  <Button size="sm" className="rounded-full gradient-bg glow-button px-5 h-9">
+                    <Search className="h-4 w-4" />
+                    <span>Search</span>
+                  </Button>
+                </div>
+
+                <div className="mt-6 aspect-video rounded-xl bg-secondary/30 border border-border/30 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=225&fit=crop"
+                    alt="Asset preview"
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+
+                <p className="mt-4 text-xs text-muted-foreground text-left">Try these searches</p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {searchTags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-border/60 px-3 py-1 text-xs text-foreground hover:border-accent/50 transition-colors cursor-pointer"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -297,8 +308,7 @@ export default function Index() {
 
                 <div className="border-t border-border/30 p-4">
                   <Button
-                    variant="outline"
-                    className="w-full rounded-full border-border hover:border-accent/50 hover:gradient-bg hover:text-white transition-all"
+                    className="w-full rounded-full gradient-bg glow-button"
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate("/courses");
