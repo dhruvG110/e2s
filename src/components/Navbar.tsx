@@ -4,7 +4,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Menu, X, LogOut } from "lucide-react";
 import { useState } from "react";
 import logoImg from "@/assets/logo_img.png";
-
+import logoText from "@/assets/logo_txt.png"
 export default function Navbar() {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center gap-3 flex-shrink-0">
           <Link to="/" className="flex items-center gap-2">
-            <img src={logoImg} alt="Edit2Scale" className="h-9 w-9 object-contain" />
+            <img src={logoText} alt="Edit2Scale" className="h-9 w-9 object-contain" />
           </Link>
         </div>
 
