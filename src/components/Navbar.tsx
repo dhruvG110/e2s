@@ -76,7 +76,7 @@ export default function Navbar() {
           ) : (
             <>
               <Button
-                variant="ghost"
+                variant="outline"
                 size="sm"
                 onClick={() => navigate("/signin")}
                 className="rounded-full"
