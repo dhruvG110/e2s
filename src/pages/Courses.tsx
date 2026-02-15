@@ -9,21 +9,29 @@ import Footer from "@/components/Footer";
 export default function Courses() {
   const [search, setSearch] = useState("");
 
-  const { data: courses, isLoading } = useQuery({
+  const { data: courses = [], isLoading } = useQuery({
     queryKey: ["all-courses"],
     queryFn: async () => {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from("courses")
         .select("*")
-        .eq("published", true)
+        .eq("published", true) // 🔴 ONLY show published courses
         .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("Courses fetch error:", error);
+        return [];
+      }
+
       return data ?? [];
     },
+    staleTime: 0,               // 🔥 always fresh
+    refetchOnWindowFocus: true, // 🔥 refetch when tab focused
   });
 
-  const filtered = courses?.filter(c =>
-    c.title.toLowerCase().includes(search.toLowerCase()) ||
-    c.category?.toLowerCase().includes(search.toLowerCase())
+  const filtered = courses.filter(course =>
+    course.title.toLowerCase().includes(search.toLowerCase()) ||
+    course.category?.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -32,7 +40,10 @@ export default function Courses() {
         <h1 className="font-display text-4xl font-bold mb-2">
           All <span className="gradient-text">Courses</span>
         </h1>
-        <p className="text-muted-foreground mb-8">Explore our complete library of premium courses</p>
+
+        <p className="text-muted-foreground mb-8">
+          Explore our complete library of premium courses
+        </p>
 
         <div className="relative mb-8 max-w-md glow-input rounded-lg">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -50,16 +61,19 @@ export default function Courses() {
               <div key={i} className="h-72 animate-pulse rounded-lg bg-secondary" />
             ))}
           </div>
-        ) : filtered && filtered.length > 0 ? (
+        ) : filtered.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map(course => (
               <CourseCard key={course.id} course={course} />
             ))}
           </div>
         ) : (
-          <div className="py-20 text-center text-muted-foreground">No courses found.</div>
+          <div className="py-20 text-center text-muted-foreground">
+            No courses found.
+          </div>
         )}
       </div>
+
       <Footer />
     </div>
   );
