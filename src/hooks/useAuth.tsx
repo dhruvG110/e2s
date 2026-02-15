@@ -42,19 +42,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
 
     // Set up listener FIRST but don't control loading from it
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, newSession) => {
-        if (!isMounted) return;
-        setSession(newSession);
-        setUser(newSession?.user ?? null);
-        if (newSession?.user) {
-          // Use setTimeout to avoid Supabase deadlock with async in callback
-          setTimeout(() => checkAdmin(newSession.user.id), 0);
-        } else {
-          setIsAdmin(false);
-        }
-      }
-    );
+  const { data: { subscription } } = supabase.auth.onAuthStateChange(
+  async (_event, newSession) => {
+    if (!isMounted) return;
+
+    setSession(newSession);
+    setUser(newSession?.user ?? null);
+
+    if (newSession?.user) {
+      await checkAdmin(newSession.user.id);
+    } else {
+      setIsAdmin(false);
+    }
+
+    if (isMounted) setLoading(false);
+  }
+);
+
 
     // Initial load — controls loading state
     const init = async () => {
