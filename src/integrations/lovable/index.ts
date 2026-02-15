@@ -25,6 +25,7 @@ export const lovable = {
 
       if (result.error) {
         return result;
+       
       }
 
       try {
