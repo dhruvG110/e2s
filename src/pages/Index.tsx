@@ -6,7 +6,7 @@ import AnimatedGradientBg from "@/components/AnimatedGradientBg";
 import { ArrowRight, Check, ChevronLeft, ChevronRight, ArrowDown, Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import logoImg from "@/assets/logo_img.png";
+import logoImg from "@/assets/logo_image.png";
 
 const courses = [
   {
@@ -67,7 +67,7 @@ export default function Index() {
 
       {/* Hero — two-column layout matching reference */}
       <section className="relative min-h-screen overflow-hidden pt-24 pb-16">
-        <AnimatedGradientBg />
+        {/* <AnimatedGradientBg /> */}
         <div className="container relative z-10 mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-16 mt-8 lg:mt-20">
             {/* Left column */}
@@ -84,7 +84,7 @@ export default function Index() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="mb-8"
               >
-                <img src={logoImg} alt="Edit2Scale" className="h-20 w-20 object-contain mx-auto lg:mx-0" />
+                <img src={logoImg} alt="Edit2Scale" className="h-[200px] w-[200px] object-contain mx-auto lg:mx-0" />
               </motion.div>
 
               <h1 className="text-5xl font-black leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl gradient-text">

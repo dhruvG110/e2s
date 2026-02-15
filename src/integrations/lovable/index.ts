@@ -13,7 +13,7 @@ export const lovable = {
   auth: {
     signInWithOAuth: async (provider: "google" | "apple", opts?: SignInOptions) => {
       const result = await lovableAuth.signInWithOAuth(provider, {
-        redirect_uri: opts?.redirect_uri,
+        redirect_uri: "http://localhost:8080/api/auth/callback/google",
         extraParams: {
           ...opts?.extraParams,
         },
