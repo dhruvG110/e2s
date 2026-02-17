@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import heroBg from "@/assets/hero-bg.jpg";
 import Footer from "@/components/Footer";
 import ParticleBackground from "@/components/ParticleBackground";
 import AnimatedGradientBg from "@/components/AnimatedGradientBg";
@@ -81,7 +82,9 @@ export default function Index() {
     );
 
   return (
+    
     <div className="min-h-screen overflow-x-hidden bg-background">
+      
       <ParticleBackground />
 
       <br />
@@ -89,7 +92,12 @@ export default function Index() {
       <br />
       <br />
       {/* Hero — two-column layout matching reference */}
-      <section className="relative min-h-screen overflow-hidden pt-24 pb-16 ">
+ <section className="relative min-h-screen overflow-hidden pt-24 pb-16">
+  {/* Flowing neon line background */}
+  <div className="hero-lines" />
+  <div className="hero-lines-fade" />
+
+
         {/* <AnimatedGradientBg /> */}
         <div className="container relative z-10 mx-auto px-6 ">
           <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-16 mt-8 lg:mt-20">

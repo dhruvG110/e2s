@@ -146,3 +146,89 @@
     transform: translateY(-2px);
   }
 }
+/* ===============================
+   HERO FLOWING LINES BACKGROUND
+   =============================== */
+
+.hero-lines {
+  position: absolute;
+  inset: 0;
+  background: #050507;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* main flowing lines */
+.hero-lines::before {
+  content: "";
+  position: absolute;
+  inset: -200%;
+  background:
+    repeating-linear-gradient(
+      120deg,
+      rgba(204, 136, 153, 0.35) 0px,
+      rgba(204, 136, 153, 0.35) 1px,
+      transparent 1px,
+      transparent 40px
+    ),
+    repeating-linear-gradient(
+      60deg,
+      rgba(255, 92, 0, 0.25) 0px,
+      rgba(255, 92, 0, 0.25) 1px,
+      transparent 1px,
+      transparent 55px
+    );
+
+  filter: blur(1.2px);
+  opacity: 0.9;
+
+  animation: flowLines 60s linear infinite;
+}
+
+/* glow + depth */
+.hero-lines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(204, 136, 153, 0.25),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(255, 92, 0, 0.15),
+      transparent 65%
+    );
+
+  mix-blend-mode: screen;
+  filter: blur(120px);
+}
+
+/* vignette fade */
+.hero-lines-fade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      120% 90% at center,
+      transparent 55%,
+      rgba(0,0,0,0.95)
+    );
+  z-index: 1;
+}
+
+/* animation */
+@keyframes flowLines {
+  0% {
+    transform: translate(0%, 0%) rotate(0deg);
+  }
+  50% {
+    transform: translate(-10%, -5%) rotate(180deg);
+  }
+  100% {
+    transform: translate(0%, 0%) rotate(360deg);
+  }
+}
