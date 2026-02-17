@@ -3,7 +3,14 @@ import { useNavigate } from "react-router-dom";
 import Footer from "@/components/Footer";
 import ParticleBackground from "@/components/ParticleBackground";
 import AnimatedGradientBg from "@/components/AnimatedGradientBg";
-import { ArrowRight, Check, ChevronLeft, ChevronRight, ArrowDown, Search } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  ArrowDown,
+  Search,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import logoImg from "@/assets/logo_image.png";
@@ -12,21 +19,26 @@ const courses = [
   {
     title: "After Effects Mastery",
     description: "Motion graphics, transitions, VFX & real-world projects",
-    image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop",
     originalPrice: "₹18,000",
     price: "₹2,199",
   },
   {
     title: "CapCut Pro Editing",
-    description: "Professional video editing, transitions, effects & color grading",
-    image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=400&fit=crop",
+    description:
+      "Professional video editing, transitions, effects & color grading",
+    image:
+      "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=400&fit=crop",
     originalPrice: "₹15,000",
     price: "₹1,999",
   },
   {
     title: "How to Find Clients and Scale",
-    description: "Client acquisition strategies, pricing & scaling your editing services",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+    description:
+      "Client acquisition strategies, pricing & scaling your editing services",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
     originalPrice: "₹12,000",
     price: "₹1,999",
   },
@@ -36,21 +48,26 @@ const testimonials = [
   {
     name: "Max Lu",
     role: "Content Creator · YouTube Educator",
-    text: "\"I always struggled with CapCut consistency. MarketMix gave me real-world workflows and templates that instantly improved my edits and confidence.\"",
+    text: '"I always struggled with CapCut consistency. MarketMix gave me real-world workflows and templates that instantly improved my edits and confidence."',
   },
   {
     name: "Rahul Sharma",
     role: "Freelance Video Editor",
-    text: "\"Edit2Scale completely transformed my editing career. I went from struggling to find clients to having a waitlist within 3 months!\"",
+    text: '"Edit2Scale completely transformed my editing career. I went from struggling to find clients to having a waitlist within 3 months!"',
   },
   {
     name: "Priya Patel",
     role: "Content Creator",
-    text: "\"The Alight Motion course is insanely detailed. I learned techniques that took my reels from 100 views to 100K+ views.\"",
+    text: '"The Alight Motion course is insanely detailed. I learned techniques that took my reels from 100 views to 100K+ views."',
   },
 ];
 
-const searchTags = ["Shake Effect", "Glow Effect", "Beat Sync", "Auto Captions"];
+const searchTags = [
+  "Shake Effect",
+  "Glow Effect",
+  "Beat Sync",
+  "Auto Captions",
+];
 
 export default function Index() {
   const navigate = useNavigate();
@@ -59,40 +76,53 @@ export default function Index() {
   const nextTestimonial = () =>
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
   const prevTestimonial = () =>
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentTestimonial(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length,
+    );
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background">
       <ParticleBackground />
 
+      <br />
+      <br />
+      <br />
+      <br />
       {/* Hero — two-column layout matching reference */}
-      <section className="relative min-h-screen overflow-hidden pt-24 pb-16">
+      <section className="relative min-h-screen overflow-hidden pt-24 pb-16 ">
         {/* <AnimatedGradientBg /> */}
-        <div className="container relative z-10 mx-auto px-6">
-          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-16 mt-8 lg:mt-20">
+        <div className="container relative z-10 mx-auto px-6 ">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-16 mt-8 lg:mt-20">
             {/* Left column */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              className="flex-1 text-center lg:text-left"
-            >
+            <motion.div className="flex-1 text-center lg:text-left">
               {/* Logo */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                transition={{ duration: 1, delay: 0.5 }}
                 className="mb-8"
               >
-                <img src={logoImg} alt="Edit2Scale" className="h-[200px] w-[200px] object-contain mx-auto lg:mx-0" />
+                <img
+                  src={logoImg}
+                  alt="Edit2Scale"
+                  className="h-[220px] w-[220px] object-contain mx-auto lg:mx-0"
+                />
               </motion.div>
-
-              <h1 className="text-5xl font-black leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl gradient-text">
-                Where Editors<br />Become Earners
-              </h1>
-
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 0.85 }}
+                className="mb-8"
+              >
+                <h1 className="text-[34.2px] font-black mt-[-20px] leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl gradient-text">
+                  WHERE EDITORS
+                  <br />
+                  BECOME EARNERS
+                </h1>
+              </motion.div>
               <p className="mt-6 text-lg font-semibold text-muted-foreground md:text-xl">
-                Become the top <span className="text-accent">1%</span> of the kiln
+                Become the top <span className="text-accent">1%</span> of the
+                kiln
               </p>
 
               <p className="mt-4 text-base text-muted-foreground">
@@ -107,9 +137,7 @@ export default function Index() {
                 ].map((item) => (
                   <motion.li
                     key={item}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 }}
+                  
                     className="flex items-center gap-3 text-foreground"
                   >
                     <Check className="h-5 w-5 text-accent flex-shrink-0" />
@@ -123,7 +151,7 @@ export default function Index() {
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
+              transition={{ duration: 1, delay: 0.2 }}
               className="w-full max-w-md lg:max-w-lg flex-shrink-0"
             >
               <div
@@ -137,7 +165,8 @@ export default function Index() {
                   Creator Asset Hub
                 </p>
                 <p className="mt-3 text-sm text-muted-foreground">
-                  Access a handpicked pool of vetted reusable assets from top creators
+                  Access a handpicked pool of vetted reusable assets from top
+                  creators
                 </p>
 
                 <div className="mt-6 flex items-center rounded-full border border-border/60 bg-secondary/40 pl-5 pr-1.5 py-1.5">
@@ -147,7 +176,10 @@ export default function Index() {
                     className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
                     readOnly
                   />
-                  <Button size="sm" className="rounded-full gradient-bg glow-button px-5 h-9">
+                  <Button
+                    size="sm"
+                    className="rounded-full gradient-bg glow-button px-5 h-9"
+                  >
                     <Search className="h-4 w-4" />
                     <span>Search</span>
                   </Button>
@@ -162,7 +194,9 @@ export default function Index() {
                   />
                 </div>
 
-                <p className="mt-4 text-xs text-muted-foreground text-left">Try these searches</p>
+                <p className="mt-4 text-xs text-muted-foreground text-left">
+                  Try these searches
+                </p>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {searchTags.map((tag) => (
                     <span
@@ -190,7 +224,9 @@ export default function Index() {
           >
             <div className="rounded-2xl border border-border/50 bg-card/80 p-6">
               <div className="aspect-square rounded-xl bg-secondary/30 border border-border/30 flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Profile Preview</span>
+                <span className="text-muted-foreground text-sm">
+                  Profile Preview
+                </span>
               </div>
             </div>
 
@@ -239,7 +275,9 @@ export default function Index() {
               <div className="mt-6 flex items-center gap-3">
                 <div className="h-10 w-10 rounded-full gradient-bg" />
                 <div className="text-left">
-                  <p className="font-semibold text-sm">{testimonials[currentTestimonial].name}</p>
+                  <p className="font-semibold text-sm">
+                    {testimonials[currentTestimonial].name}
+                  </p>
                   <p className="text-xs text-muted-foreground">
                     {testimonials[currentTestimonial].role}
                   </p>
@@ -273,7 +311,8 @@ export default function Index() {
             className="mb-10 text-center"
           >
             <h2 className="text-3xl font-bold md:text-4xl">
-              Check out our <span className="gradient-text">newest courses</span>
+              Check out our{" "}
+              <span className="gradient-text">newest courses</span>
             </h2>
           </motion.div>
 
@@ -290,10 +329,14 @@ export default function Index() {
               >
                 <div className="p-5">
                   <h3 className="text-lg font-bold">{course.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{course.description}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {course.description}
+                  </p>
 
                   <div className="mt-4 aspect-video rounded-xl bg-secondary/30 border border-border/30 overflow-hidden flex items-center justify-center">
-                    <span className="text-muted-foreground text-xs">Course image</span>
+                    <span className="text-muted-foreground text-xs">
+                      Course image
+                    </span>
                   </div>
 
                   <div className="mt-4 flex items-baseline gap-2">
@@ -331,7 +374,10 @@ export default function Index() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="mx-auto max-w-2xl rounded-2xl border border-accent/30 bg-accent/5 p-8"
-            style={{ boxShadow: "0 0 40px hsl(25 95% 55% / 0.1), 0 0 80px hsl(270 80% 65% / 0.05)" }}
+            style={{
+              boxShadow:
+                "0 0 40px hsl(25 95% 55% / 0.1), 0 0 80px hsl(270 80% 65% / 0.05)",
+            }}
           >
             <p className="text-sm font-medium text-accent uppercase tracking-wider mb-2">
               Complete Bundle

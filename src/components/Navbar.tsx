@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { Menu, X, LogOut } from "lucide-react";
 import { useState } from "react";
-import logoImg from "@/assets/logo_img.png";
 import logoText from "@/assets/logo_txt_1.png";
+
 export default function Navbar() {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
@@ -17,32 +17,34 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
-      <div className="container mx-auto flex h-16 items-center px-4">
-        {/* Mobile: hamburger on left */}
+      <div className="container mx-auto flex h-16 items-center px-4 relative">
+        
+        {/* Mobile menu button (LEFT) */}
         <button
-          className="md:hidden text-foreground mr-3"
+          className="md:hidden text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
+          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
 
-        {/* Logo */}
-        <div className="flex items-center justify-center gap-3 flex-shrink-0">
-          <Link to="/" className="flex items-center gap-2">
-            <img
-              src={logoText}
-              alt="Edit2Scale"
-              className="h-8 object-contain"
-            />
-          </Link>
-        </div>
+        {/* LOGO */}
+        <Link
+          to="/"
+          className="
+            absolute left-1/2 -translate-x-1/2
+            md:static md:translate-x-0
+            flex items-center
+          "
+        >
+          <img
+            src={logoText}
+            alt="Edit2Scale"
+            className="h-8 object-contain"
+          />
+        </Link>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-6 md:flex md:ml-8">
+        <div className="hidden md:flex items-center gap-6 ml-8">
           <Link
             to="/courses"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -62,7 +64,7 @@ export default function Navbar() {
         {/* Spacer */}
         <div className="flex-1" />
 
-        {/* Auth buttons */}
+        {/* Auth buttons (desktop) */}
         <div className="hidden md:flex items-center gap-3">
           {user ? (
             <Button
