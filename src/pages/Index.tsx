@@ -86,16 +86,32 @@ export default function Index() {
     <div className="min-h-screen overflow-x-hidden bg-background">
       
       <ParticleBackground />
-
+{/* 
       <br />
       <br />
       <br />
-      <br />
+      <br /> */}
       {/* Hero — two-column layout matching reference */}
- <section className="relative min-h-screen overflow-hidden pt-24 pb-16">
-  {/* Flowing neon line background */}
-  <div className="hero-lines" />
-  <div className="hero-lines-fade" />
+ <section className="relative min-h-screen overflow-hidden  pt-48 pb-16">
+  
+  <div className="cinematic-bg" />
+<div className="particles-bg">
+  {Array.from({ length: 30 }).map((_, i) => (
+    <span
+      key={i}
+      className={i % 2 === 0 ? "orange" : "purple"}
+      style={{
+        left: `${Math.random() * 100}%`,
+        bottom: `${Math.random() * 100}%`,
+        width: `${6 + Math.random() * 10}px`,
+        height: `${6 + Math.random() * 10}px`,
+        animationDuration: `${18 + Math.random() * 20}s`,
+        animationDelay: `${Math.random() * 10}s`,
+      }}
+    />
+  ))}
+</div>
+
 
 
         {/* <AnimatedGradientBg /> */}
