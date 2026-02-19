@@ -94,56 +94,21 @@ export default function Index() {
       {/* Hero — two-column layout matching reference */}
  <section className="relative min-h-screen overflow-hidden  pt-44 pb-16">
 <div className="particles-bg">
-  {Array.from({ length: 90 }).map((_, i) => {
-    // DEPTH LAYER
-    const depthRand = Math.random();
-    const depth =
-      depthRand < 0.3 ? "depth-far" :
-      depthRand < 0.65 ? "depth-mid" :
-      "depth-near";
-
-    const isBig = depth === "depth-near";
-    const isSquare = isBig && Math.random() < 0.4;
-
-    const size =
-      depth === "depth-near"
-        ? 9 + Math.random() * 6   // close
-        : depth === "depth-mid"
-        ? 5 + Math.random() * 4    // mid
-        : 2 + Math.random() * 2;   // far
-
-    return (
-      <span
-        key={i}
-        className={`
-          ${i % 2 === 0 ? "orange" : "purple"}
-          ${isSquare ? "square" : "circle"}
-          ${depth}
-        `}
-        style={{
-          top: `${Math.random() * 100}%`,
-          width: `${size}px`,
-          height: `${size}px`,
-
-          animationDuration:
-            depth === "depth-near"
-              ? `${12 + Math.random() * 6}s`
-              : depth === "depth-mid"
-              ? `${18 + Math.random() * 8}s`
-              : `${26 + Math.random() * 10}s`,
-
-          animationDelay: `${Math.random() * 10}s`,
-
-          "--offset": `${Math.random() * 90 - 45}px`,
-          "--scale-start": depth === "depth-near" ? 0.9 : depth === "depth-mid" ? 0.7 : 0.5,
-          "--scale-mid": depth === "depth-near" ? 1.1 : depth === "depth-mid" ? 0.9 : 0.7,
-          "--scale-end": depth === "depth-near" ? 0.95 : depth === "depth-mid" ? 0.75 : 0.55,
-          "--opacity": depth === "depth-near" ? 0.9 : depth === "depth-mid" ? 0.6 : 0.35,
-        } as React.CSSProperties}
-      />
-    );
-  })}
+  {Array.from({ length: 80 }).map((_, i) => (
+    <span
+      key={i}
+      className={`particle ${i % 6 === 0 ? "big" : "small"} ${
+        i % 4 === 0 ? "square" : "circle"
+      } ${i % 2 === 0 ? "orange" : "purple"}`}
+      style={{
+        left: `${Math.random() * 100}%`,
+        animationDelay: `${Math.random() * -20}s`,
+        animationDuration: `${18 + Math.random() * 20}s`,
+      }}
+    />
+  ))}
 </div>
+
 
 
 
