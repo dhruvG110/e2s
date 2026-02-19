@@ -103,7 +103,7 @@ export default function Index() {
       style={{
         left: `${Math.random() * 100}%`,
         animationDelay: `${Math.random() * -20}s`,
-        animationDuration: `${8 + Math.random() * 8}s`,
+        animationDuration: `${10 + Math.random() * 10}s`,
       }}
     />
   ))}
@@ -133,11 +133,10 @@ export default function Index() {
                   className="h-[220px] w-[220px] object-contain mx-auto lg:mx-0"
                 />
               </motion.div>
-            <motion.div
+              </motion.div>
+            <motion.div className="mb-8">
  
  
-  className="mb-8"
->
   <h1 className="text-[34.2px] font-black mt-[-20px] leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl gradient-text">
     WHERE EDITORS
     <br />
@@ -145,32 +144,47 @@ export default function Index() {
   </h1>
 </motion.div>
 
-              <p className="mt-6 text-lg font-semibold text-muted-foreground md:text-xl">
-                Become the top <span className="text-accent">1%</span> of the
-                kiln
-              </p>
+          <motion.div
+  initial={{ opacity: 0, y: 28 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{
+    duration: 0.55,
+    delay: 0.45,
+    ease: [0.22, 1, 0.36, 1], // smooth ease-out (premium feel)
+  }}
+>
+  <p className="mt-6 text-lg font-semibold text-muted-foreground md:text-xl">
+    Become the top <span className="text-accent">1%</span> of the kiln
+  </p>
 
-              <p className="mt-4 text-base text-muted-foreground">
-                No random tutorials, No confusion, No wasted years
-              </p>
+  <p className="mt-4 text-base text-muted-foreground">
+    No random tutorials, No confusion, No wasted years
+  </p>
 
-              <ul className="mt-8 flex flex-col gap-3 text-left mx-auto lg:mx-0 w-fit">
-                {[
-                  "Master After Effects & CapCut",
-                  "Project-based learning",
-                  "Monetize your skills instantly",
-                ].map((item) => (
-                  <motion.li
-                    key={item}
-                  
-                    className="flex items-center gap-3 text-foreground"
-                  >
-                    <Check className="h-5 w-5 text-accent flex-shrink-0" />
-                    <span>{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
+  <ul className="mt-8 flex flex-col gap-3 text-left mx-auto lg:mx-0 w-fit">
+    {[
+      "Master After Effects & CapCut",
+      "Project-based learning",
+      "Monetize your skills instantly",
+    ].map((item, index) => (
+      <motion.li
+        key={item}
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.45,
+          delay: 0.65 + index * 0.12,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="flex items-center gap-3 text-foreground"
+      >
+        <Check className="h-5 w-5 text-accent flex-shrink-0" />
+        <span>{item}</span>
+      </motion.li>
+    ))}
+  </ul>
+</motion.div>
+
 
             {/* Right column — Creator Asset Hub */}
             <motion.div
