@@ -159,7 +159,7 @@ export default function Index() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.87 }}
+                transition={{ duration: 1, delay: 0.65 }}
                 className="mb-8"
               >
                 <img
@@ -169,13 +169,8 @@ export default function Index() {
                 />
               </motion.div>
             <motion.div
-  initial={{ opacity: 0, y: 28 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{
-    duration: 0.55,
-    delay: 0.55,
-    ease: [0.22, 1, 0.36, 1], // smooth premium ease-out
-  }}
+ 
+ 
   className="mb-8"
 >
   <h1 className="text-[34.2px] font-black mt-[-20px] leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl gradient-text">
