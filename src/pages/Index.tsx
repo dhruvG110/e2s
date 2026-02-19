@@ -103,7 +103,7 @@ export default function Index() {
       style={{
         left: `${Math.random() * 100}%`,
         animationDelay: `${Math.random() * -20}s`,
-        animationDuration: `${18 + Math.random() * 20}s`,
+        animationDuration: `${8 + Math.random() * 8}s`,
       }}
     />
   ))}
