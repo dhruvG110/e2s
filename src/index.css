@@ -7,7 +7,7 @@
 ================================ */
 @layer base {
   :root {
-    --background: 0 0% 0%;
+    --background: #121212;
     --foreground: 0 0% 95%;
 
     --card: 0 0% 5%;
@@ -73,15 +73,15 @@
   /* === GLOW BUTTON === */
   .glow-button {
     box-shadow:
-      0 0 28px rgba(255, 92, 0, 0.45),
-      0 0 60px rgba(204, 136, 153, 0.35);
+      0 0 28px rgba(255, 136, 0, 0.363),
+      0 0 60px rgba(194, 11, 154, 0.445);
     transition: all 0.35s ease;
   }
 
   .glow-button:hover {
     box-shadow:
-      0 0 45px rgba(255, 92, 0, 0.75),
-      0 0 90px rgba(204, 136, 153, 0.55);
+       0 0 28px rgba(255, 136, 0, 0.363),
+      0 0 60px rgba(194, 11, 154, 0.445);
     transform: translateY(-2px) scale(1.04);
   }
 
@@ -89,8 +89,8 @@
   .course-card-hover:hover {
     background: linear-gradient(
       135deg,
-      rgba(255, 92, 0, 0.14),
-      rgba(204, 136, 153, 0.14)
+       #ff5e0063,
+      #9d00ff3b
     );
     box-shadow:
      #ff5c00,
@@ -99,123 +99,7 @@
 }
 
 /* ===============================
-   CINEMATIC HERO BACKGROUND
-================================ */
-.cinematic-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-
-  background:
-    /* CENTER GLOW */
-    radial-gradient(
-      55% 45% at 50% 45%,
-      rgba(204, 136, 153, 0.28),
-      transparent 72%
-    ),
-
-    /* ORANGE AURA (TOP RIGHT) */
-    radial-gradient(
-      42% 38% at 88% 12%,
-      rgba(255, 92, 0, 0.35),
-      transparent 78%
-    ),
-
-    /* PINK AURA (BOTTOM LEFT) */
-    radial-gradient(
-      48% 44% at 12% 88%,
-      rgba(204, 136, 153, 0.38),
-      transparent 82%
-    ),
-
-    /* BASE DARK */
-    linear-gradient(
-      135deg,
-      #020202 0%,
-      #070505 45%,
-      #020202 100%
-    );
-}
-
-/* ===============================
-   SLOW AURA MOTION
-================================ */ 
-.cinematic-bg::before {
-  content: "";
-  position: absolute;
-  inset: -18%;
-
-  background:
-    radial-gradient(
-      45% 40% at 60% 40%,
-      #ff5e0038,
-      transparent 75%
-    ),
-    radial-gradient(
-      50% 45% at 40% 60%,
-      #9d00ff41,
-      transparent 80%
-    );
-
-  animation: cinematic-drift 18s ease-in-out infinite alternate;
-}
-
-/* ===============================
-   FILM GRAIN
-================================ */
-.cinematic-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-
-  mix-blend-mode: overlay;
-  pointer-events: none;
-}
-
-/* ===============================
-   KEYFRAMES
-================================ */
-@keyframes cinematic-drift {
-  0% {
-    transform: translate(0%, 0%);
-    opacity: 0.85;
-  }
-  100% {
-    transform: translate(-3%, -2%);
-    opacity: 1;
-  }
-}
-.cinematic-bg::mask {
-  content: "";
-  position: absolute;
-  inset: 0;
-}
-
-/* VIGNETTE FADE */
-.cinematic-bg {
-  -webkit-mask-image: radial-gradient(
-    circle at center,
-    rgba(0,0,0,1) 45%,
-    rgba(0,0,0,0.85) 60%,
-    rgba(0,0,0,0.55) 75%,
-    rgba(0,0,0,0.25) 90%,
-    rgba(0,0,0,0) 100%
-  );
-  mask-image: radial-gradient(
-    circle at center,
-    rgba(0,0,0,1) 45%,
-    rgba(0,0,0,0.85) 60%,
-    rgba(0,0,0,0.55) 75%,
-    rgba(0,0,0,0.25) 90%,
-    rgba(0,0,0,0) 100%
-  );
-}
-
-/* ===============================
-   FLOATING PARTICLES LAYER
+   PARTICLES CONTAINER
 ================================ */
 .particles-bg {
   position: fixed;
@@ -225,45 +109,61 @@
   overflow: hidden;
 }
 
-/* Shared particle base */
+/* ===============================
+   PARTICLE BASE
+================================ */
 .particles-bg span {
   position: absolute;
-  display: block;
-  border-radius: 9999px;
-  opacity: 0.6;
-  /* filter: blur(6px); */
-  animation: particle-float linear infinite;
-}
 
-/* ORANGE PARTICLES */
-.particles-bg .orange {
-  background: #ff5c00;
-  box-shadow:
-    0 0 18px rgba(255, 92, 0, 0.9),
-    0 0 40px rgba(255, 92, 0, 0.6);
-}
+  /* SMALL, CLEAN CIRCLES */
+  width: 2.5px;
+  height: 2.5px;
+  border-radius: 50%;
 
-/* PURPLE PARTICLES */
-.particles-bg .purple {
-  background: #9d00ff;
-  box-shadow:
-    0 0 18px rgba(157, 0, 255, 0.9),
-    0 0 40px rgba(157, 0, 255, 0.6);
+  opacity: 0;
+  animation: particle-fall linear infinite;
+  will-change: transform, opacity;
 }
 
 /* ===============================
-   FLOAT ANIMATION
+   ORANGE PARTICLES
 ================================ */
-@keyframes particle-float {
+.particles-bg .orange {
+  background-color: #ff5c00;
+  box-shadow:
+    0 0 4px rgba(255, 92, 0, 0.9),
+    0 0 10px rgba(255, 92, 0, 0.6);
+}
+
+/* ===============================
+   PURPLE PARTICLES
+================================ */
+.particles-bg .purple {
+  background-color: #9d00ff;
+  box-shadow:
+    0 0 4px rgba(157, 0, 255, 0.9),
+    0 0 10px rgba(157, 0, 255, 0.6);
+}
+
+/* ===============================
+   FALLING ANIMATION (TOP → BOTTOM)
+================================ */
+@keyframes particle-fall {
   0% {
-    transform: translateY(0) translateX(0);
+    transform: translateY(-10vh) translateX(0);
     opacity: 0;
   }
+
   10% {
-    opacity: 0.6;
+    opacity: 0.8;
   }
+
+  50% {
+    transform: translateY(50vh) translateX(calc(-12px + 24px * var(--drift)));
+  }
+
   100% {
-    transform: translateY(-120vh) translateX(40px);
+    transform: translateY(110vh) translateX(calc(-24px + 48px * var(--drift)));
     opacity: 0;
   }
 }
