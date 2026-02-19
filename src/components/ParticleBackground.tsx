@@ -42,7 +42,7 @@ export default function ParticleBackground() {
         hue: Math.random() > 0.5 ? 270 : 330,
         angle,
         life: 0,
-        maxLife: 1200 + Math.random() * 180,
+        maxLife: 100 + Math.random() * 180,
       };
     };
 
