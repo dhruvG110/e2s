@@ -153,7 +153,7 @@ export default function Index() {
     ease: [0.22, 1, 0.36, 1], // smooth ease-out (premium feel)
   }}
 >
-  <p className="mt-6 text-lg font-semibold text-muted-foreground md:text-xl">
+  <p className="mt-2 text-lg font-semibold text-muted-foreground md:text-xl">
     Become the top <span className="text-accent">1%</span> of the kiln
   </p>
 
