@@ -42,12 +42,12 @@ export default function ParticleBackground() {
         hue: Math.random() > 0.5 ? 270 : 330,
         angle,
         life: 0,
-        maxLife: 120 + Math.random() * 180,
+        maxLife: 1200 + Math.random() * 180,
       };
     };
 
     // Start with a few
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 10; i++) {
       const m = createMeteor();
       m.life = Math.random() * m.maxLife * 0.5;
       meteors.push(m);
