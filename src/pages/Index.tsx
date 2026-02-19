@@ -92,21 +92,60 @@ export default function Index() {
       <br />
       <br /> */}
       {/* Hero — two-column layout matching reference */}
- <section className="relative min-h-screen overflow-hidden  pt-48 pb-16">
-  <div className="particles-bg">
-  {Array.from({ length: 40 }).map((_, i) => (
-    <span
-      key={i}
-      className={i % 2 === 0 ? "orange" : "purple"}
-      style={{
-        left: `${Math.random() * 100}%`,
-        animationDuration: `${12 + Math.random() * 10}s`,
-        animationDelay: `${Math.random() * 8}s`,
-        "--drift": Math.random(),
-      }}
-    />
-  ))}
+ <section className="relative min-h-screen overflow-hidden  pt-44 pb-16">
+<div className="particles-bg">
+  {Array.from({ length: 90 }).map((_, i) => {
+    // DEPTH LAYER
+    const depthRand = Math.random();
+    const depth =
+      depthRand < 0.3 ? "depth-far" :
+      depthRand < 0.65 ? "depth-mid" :
+      "depth-near";
+
+    const isBig = depth === "depth-near";
+    const isSquare = isBig && Math.random() < 0.4;
+
+    const size =
+      depth === "depth-near"
+        ? 9 + Math.random() * 6   // close
+        : depth === "depth-mid"
+        ? 5 + Math.random() * 4    // mid
+        : 2 + Math.random() * 2;   // far
+
+    return (
+      <span
+        key={i}
+        className={`
+          ${i % 2 === 0 ? "orange" : "purple"}
+          ${isSquare ? "square" : "circle"}
+          ${depth}
+        `}
+        style={{
+          top: `${Math.random() * 100}%`,
+          width: `${size}px`,
+          height: `${size}px`,
+
+          animationDuration:
+            depth === "depth-near"
+              ? `${12 + Math.random() * 6}s`
+              : depth === "depth-mid"
+              ? `${18 + Math.random() * 8}s`
+              : `${26 + Math.random() * 10}s`,
+
+          animationDelay: `${Math.random() * 10}s`,
+
+          "--offset": `${Math.random() * 90 - 45}px`,
+          "--scale-start": depth === "depth-near" ? 0.9 : depth === "depth-mid" ? 0.7 : 0.5,
+          "--scale-mid": depth === "depth-near" ? 1.1 : depth === "depth-mid" ? 0.9 : 0.7,
+          "--scale-end": depth === "depth-near" ? 0.95 : depth === "depth-mid" ? 0.75 : 0.55,
+          "--opacity": depth === "depth-near" ? 0.9 : depth === "depth-mid" ? 0.6 : 0.35,
+        } as React.CSSProperties}
+      />
+    );
+  })}
 </div>
+
+
 
 
 
@@ -120,7 +159,7 @@ export default function Index() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.5 }}
+                transition={{ duration: 1, delay: 0.87 }}
                 className="mb-8"
               >
                 <img
@@ -129,18 +168,23 @@ export default function Index() {
                   className="h-[220px] w-[220px] object-contain mx-auto lg:mx-0"
                 />
               </motion.div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.85 }}
-                className="mb-8"
-              >
-                <h1 className="text-[34.2px] font-black mt-[-20px] leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl gradient-text">
-                  WHERE EDITORS
-                  <br />
-                  BECOME EARNERS
-                </h1>
-              </motion.div>
+            <motion.div
+  initial={{ opacity: 0, y: 28 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{
+    duration: 0.55,
+    delay: 0.55,
+    ease: [0.22, 1, 0.36, 1], // smooth premium ease-out
+  }}
+  className="mb-8"
+>
+  <h1 className="text-[34.2px] font-black mt-[-20px] leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl gradient-text">
+    WHERE EDITORS
+    <br />
+    BECOME EARNERS
+  </h1>
+</motion.div>
+
               <p className="mt-6 text-lg font-semibold text-muted-foreground md:text-xl">
                 Become the top <span className="text-accent">1%</span> of the
                 kiln
@@ -345,7 +389,8 @@ export default function Index() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group rounded-2xl border border-border/50 bg-card/80 overflow-hidden cursor-pointer course-card-hover"
+               className="group shine-card rounded-2xl border border-border/50 bg-card/80 overflow-hidden cursor-pointer course-card-hover"
+
                 onClick={() => navigate("/courses")}
               >
                 <div className="p-5">

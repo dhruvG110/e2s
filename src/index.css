@@ -97,73 +97,110 @@
       #9d00ff;
   }
 }
-
 /* ===============================
-   PARTICLES CONTAINER
-================================ */
-.particles-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* ===============================
-   PARTICLE BASE
+   PARTICLE BASE (3D DEPTH)
 ================================ */
 .particles-bg span {
   position: absolute;
-
-  /* SMALL, CLEAN CIRCLES */
-  width: 2.5px;
-  height: 2.5px;
-  border-radius: 50%;
-
   opacity: 0;
-  animation: particle-fall linear infinite;
-  will-change: transform, opacity;
+  animation: particle-cylinder linear infinite;
+  will-change: transform, opacity, filter;
 }
 
-/* ===============================
-   ORANGE PARTICLES
-================================ */
-.particles-bg .orange {
-  background-color: #ff5c00;
-  box-shadow:
-    0 0 4px rgba(255, 92, 0, 0.9),
-    0 0 10px rgba(255, 92, 0, 0.6);
-}
+/* SHAPES */
+.circle { border-radius: 50%; }
+.square { border-radius: 4px; }
 
 /* ===============================
-   PURPLE PARTICLES
+   DEPTH VARIANTS
 ================================ */
-.particles-bg .purple {
-  background-color: #9d00ff;
-  box-shadow:
-    0 0 4px rgba(157, 0, 255, 0.9),
-    0 0 10px rgba(157, 0, 255, 0.6);
+.depth-near {
+  filter: blur(0px);
 }
 
+.depth-mid {
+  filter: blur(1px);
+}
+
+.depth-far {
+  filter: blur(2px);
+}
 /* ===============================
-   FALLING ANIMATION (TOP → BOTTOM)
+   CARD SHINE EFFECT
 ================================ */
-@keyframes particle-fall {
+.shine-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  opacity: 0;
+}
+
+.shine-card:hover::before {
+  animation: shine-sweep 0.8s ease-in-out;
+  opacity: 1;
+}
+
+@keyframes shine-sweep {
   0% {
-    transform: translateY(-10vh) translateX(0);
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+/* COLORS */
+.orange {
+  background: #ff5c00;
+  box-shadow: 0 0 8px rgba(255,92,0,.9), 0 0 20px rgba(255,92,0,.6);
+}
+
+.purple {
+  background: #9d00ff;
+  box-shadow: 0 0 8px rgba(157,0,255,.9), 0 0 20px rgba(157,0,255,.6);
+}
+@keyframes particle-cylinder {
+  0% {
+    transform:
+      translateX(-15vw)
+      translateY(var(--offset))
+      scale(var(--scale-start));
     opacity: 0;
   }
 
-  10% {
-    opacity: 0.8;
+  15% {
+    opacity: var(--opacity);
   }
 
   50% {
-    transform: translateY(50vh) translateX(calc(-12px + 24px * var(--drift)));
+    transform:
+      translateX(50vw)
+      translateY(calc(var(--offset) * -1))
+      scale(var(--scale-mid));
   }
 
   100% {
-    transform: translateY(110vh) translateX(calc(-24px + 48px * var(--drift)));
+    transform:
+      translateX(120vw)
+      translateY(var(--offset))
+      scale(var(--scale-end));
     opacity: 0;
   }
 }
