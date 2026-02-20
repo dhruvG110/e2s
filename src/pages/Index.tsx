@@ -22,7 +22,7 @@ const courses = [
     description: "Motion graphics, transitions, VFX & real-world projects",
     image:
       "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop",
-    originalPrice: "₹18,000",
+    originalPrice: "₹6999",
     price: "₹2,999",
   },
   {
@@ -31,7 +31,7 @@ const courses = [
       "Professional video editing, transitions, effects & color grading",
     image:
       "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=400&fit=crop",
-    originalPrice: "₹15,000",
+    originalPrice: "₹4999",
     price: "₹1,999",
   },
   {
@@ -40,7 +40,7 @@ const courses = [
       "Client acquisition strategies, pricing & scaling your editing services",
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-    originalPrice: "₹12,000",
+    originalPrice: "₹9999",
     price: "₹3,999",
   },
 ];
@@ -124,8 +124,8 @@ export default function Index() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.65 }}
-                className="mb-[-7px]"
+                transition={{ duration: 1, delay: 0.45 }}
+                className="mb-[-6.5px]"
               >
                 <img
                   src={logoImg}
@@ -415,7 +415,7 @@ export default function Index() {
             </p>
             <h2 className="text-3xl font-bold md:text-4xl">
               All 3 Courses for just{" "}
-              <span className="gradient-text">₹4,199</span>
+              <span className="gradient-text">₹4,499</span>
             </h2>
             <p className="mt-3 text-muted-foreground">
               Get lifetime access to all courses — one price, unlimited growth.

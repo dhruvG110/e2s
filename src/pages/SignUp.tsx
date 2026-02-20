@@ -90,9 +90,9 @@ export default function SignUp() {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 w-full max-w-md"
+        className="relative z-10 w-full max-w-md mt-20"
       >
-        <Card className="border-border/50 bg-card/80 backdrop-blur-xl shadow-[0_0_60px_rgba(0,0,0,0.6)]">
+        <Card className="border-border/50 bg-card/80 backdrop-blur-xl shadow-[0_0_60px_rgba(0,0,0,0.6)] ">
           <CardHeader className="text-center space-y-3">
             <GraduationCap className="mx-auto h-10 w-10 text-accent" />
             <CardTitle className="text-2xl font-bold gradient-text">
@@ -111,7 +111,7 @@ export default function SignUp() {
                   <div className="relative glow-input rounded-lg">
                     <f.icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                     <Input
-                      className="pl-10 bg-secondary border-border"
+                      className="pl-10 bg-secondary border-border border-white"
                       type={f.type}
                       value={form[f.key as keyof typeof form]}
                       onChange={(e) => update(f.key, e.target.value)}

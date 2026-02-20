@@ -84,7 +84,7 @@ export default function SignIn() {
                 <div className="relative glow-input rounded-lg">
                   <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                   <Input
-                    className="pl-10 bg-secondary border-border"
+                    className="pl-10 bg-secondary border-border border-white"
                     type="email"
                     placeholder="you@example.com"
                     value={email}
@@ -100,7 +100,7 @@ export default function SignIn() {
                 <div className="relative glow-input rounded-lg">
                   <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                   <Input
-                    className="pl-10 bg-secondary border-border"
+                    className="pl-10 bg-secondary border-border border-white"
                     type="password"
                     placeholder="••••••••"
                     value={password}
