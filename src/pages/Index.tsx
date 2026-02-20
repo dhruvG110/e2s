@@ -125,7 +125,7 @@ export default function Index() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.65 }}
-                className="mb-[-10px]"
+                className="mb-[-7px]"
               >
                 <img
                   src={logoImg}
