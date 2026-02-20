@@ -51,6 +51,12 @@ export default function Navbar() {
           >
             Courses
           </Link>
+          <Link
+            to="/contact"
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Contact Us
+          </Link>
           {user && (
             <Link
               to="/dashboard"
