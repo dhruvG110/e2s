@@ -31,33 +31,42 @@ export default function ParticleBackground() {
     resize();
     window.addEventListener("resize", resize);
 
-    const createMeteor = (): Meteor => {
-      const angle = Math.PI / 4 + (Math.random() - 0.5) * 0.3; // ~45deg with slight variation
-      return {
-        x: Math.random() * canvas.width * 1.2,
-        y: -20 - Math.random() * 100,
-        length: 40 + Math.random() * 80,
-        speed: 1.5 + Math.random() * 2,
-        opacity: 0,
-        hue: Math.random() > 0.5 ? 270 : 330,
-        angle,
-        life: 0,
-        maxLife: 100 + Math.random() * 180,
-      };
-    };
+ const createMeteor = (): Meteor => {
+  const fromTop = Math.random() > 0.5;
 
-    // Start with a few
-    for (let i = 0; i < 10; i++) {
+  // 45° from top (↘), 135° from bottom (↗)
+  const baseAngle = fromTop
+    ? Math.PI / 4            // 45°
+    : (3 * Math.PI) / 4;    // 135°
+
+  const angle = baseAngle + (Math.random() - 0.5) * 0.25; // small natural variation
+
+  return {
+    x: Math.random() * canvas.width,
+    y: fromTop
+      ? -40 - Math.random() * 120
+      : canvas.height + 40 + Math.random() * 120,
+    length: 50 + Math.random() * 90,
+    speed: 4 + Math.random() * 4,
+    opacity: 0,
+    hue: Math.random() > 0.5 ? 25 : 270,
+    angle,
+    life: 0,
+    maxLife: 70 + Math.random() * 90,
+  };
+};
+    // Initial burst
+    for (let i = 0; i < 14; i++) {
       const m = createMeteor();
-      m.life = Math.random() * m.maxLife * 0.5;
+      m.life = Math.random() * m.maxLife;
       meteors.push(m);
     }
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Spawn new meteors occasionally
-      if (Math.random() < 0.012 && meteors.length < 6) {
+      // Spawn rate ↑↑
+      if (Math.random() < 0.08 && meteors.length < 18) {
         meteors.push(createMeteor());
       }
 
@@ -65,16 +74,15 @@ export default function ParticleBackground() {
 
       meteors.forEach((m) => {
         m.life++;
-        // Fade in then fade out
+
         const progress = m.life / m.maxLife;
-        if (progress < 0.1) {
-          m.opacity = progress / 0.1;
-        } else if (progress > 0.7) {
-          m.opacity = (1 - progress) / 0.3;
-        } else {
-          m.opacity = 1;
-        }
-        m.opacity *= 0.35;
+
+        // Smooth fade in / out
+        if (progress < 0.15) m.opacity = progress / 0.15;
+        else if (progress > 0.7) m.opacity = (1 - progress) / 0.3;
+        else m.opacity = 1;
+
+        m.opacity *= 0.45;
 
         m.x += Math.cos(m.angle) * m.speed;
         m.y += Math.sin(m.angle) * m.speed;
@@ -82,25 +90,28 @@ export default function ParticleBackground() {
         const tailX = m.x - Math.cos(m.angle) * m.length;
         const tailY = m.y - Math.sin(m.angle) * m.length;
 
-        // Glow
+        // Gradient tail
         const gradient = ctx.createLinearGradient(tailX, tailY, m.x, m.y);
-        gradient.addColorStop(0, `hsla(${m.hue}, 80%, 65%, 0)`);
-        gradient.addColorStop(1, `hsla(${m.hue}, 80%, 65%, ${m.opacity})`);
+        gradient.addColorStop(0, `hsla(${m.hue}, 90%, 65%, 0)`);
+        gradient.addColorStop(
+          1,
+          `hsla(${m.hue}, 90%, 65%, ${m.opacity})`,
+        );
 
         ctx.beginPath();
         ctx.moveTo(tailX, tailY);
         ctx.lineTo(m.x, m.y);
         ctx.strokeStyle = gradient;
-        ctx.lineWidth = 1.5;
+        ctx.lineWidth = 2;
         ctx.lineCap = "round";
         ctx.stroke();
 
         // Head glow
         ctx.beginPath();
-        ctx.arc(m.x, m.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${m.hue}, 80%, 75%, ${m.opacity * 0.8})`;
-        ctx.shadowColor = `hsla(${m.hue}, 80%, 65%, ${m.opacity})`;
-        ctx.shadowBlur = 8;
+        ctx.arc(m.x, m.y, 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${m.hue}, 90%, 75%, ${m.opacity})`;
+        ctx.shadowColor = `hsla(${m.hue}, 90%, 65%, ${m.opacity})`;
+        ctx.shadowBlur = 12;
         ctx.fill();
         ctx.shadowBlur = 0;
       });
@@ -109,6 +120,7 @@ export default function ParticleBackground() {
     };
 
     draw();
+
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", resize);
@@ -119,7 +131,7 @@ export default function ParticleBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.7 }}
+      style={{ opacity: 0.75 }}
     />
   );
 }

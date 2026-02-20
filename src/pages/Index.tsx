@@ -18,12 +18,12 @@ import logoImg from "@/assets/logo_image.png";
 
 const courses = [
   {
-    title: "After Effects Mastery",
+    title: "Aligt Motion",
     description: "Motion graphics, transitions, VFX & real-world projects",
     image:
       "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop",
     originalPrice: "₹18,000",
-    price: "₹2,199",
+    price: "₹2,999",
   },
   {
     title: "CapCut Pro Editing",
@@ -41,7 +41,7 @@ const courses = [
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
     originalPrice: "₹12,000",
-    price: "₹1,999",
+    price: "₹3,999",
   },
 ];
 
@@ -83,7 +83,7 @@ export default function Index() {
 
   return (
     
-    <div className="min-h-screen overflow-x-hidden bg-background">
+<div className="min-h-screen overflow-x-hidden overflow-y-auto bg-background">
       
       <ParticleBackground />
 {/* 
@@ -92,7 +92,7 @@ export default function Index() {
       <br />
       <br /> */}
       {/* Hero — two-column layout matching reference */}
- <section className="relative min-h-screen overflow-hidden  pt-44 pb-16">
+ <section className="relative min-h-screen overflow-visible pt-44 pb-16">
 <div className="particles-bg">
   {Array.from({ length: 80 }).map((_, i) => (
     <span
@@ -125,18 +125,19 @@ export default function Index() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.65 }}
-                className="mb-8"
+                className="mb-[-10px]"
               >
                 <img
                   src={logoImg}
                   alt="Edit2Scale"
-                  className="h-[220px] w-[220px] object-contain mx-auto lg:mx-0"
+                  className="h-[220px] w-[220px] object-contain mx-auto lg:mx-0 "
                 />
               </motion.div>
-              </motion.div>
-            <motion.div className="mb-8">
+            <motion.div
  
  
+  className="mb-8"
+>
   <h1 className="text-[34.2px] font-black mt-[-20px] leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl gradient-text">
     WHERE EDITORS
     <br />
@@ -144,19 +145,21 @@ export default function Index() {
   </h1>
 </motion.div>
 
-          <motion.div
+  
+              <p className="mt-[-20px] text-lg font-semibold text-muted-foreground md:text-xl">
+                Become the top <span className="text-accent">1%</span> of the
+                kiln
+              </p>
+
+              <motion.div
   initial={{ opacity: 0, y: 28 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{
     duration: 0.55,
-    delay: 0.45,
-    ease: [0.22, 1, 0.36, 1], // smooth ease-out (premium feel)
+    delay: 0.55,
+    ease: [0.22, 1, 0.36, 1], // premium ease
   }}
 >
-  <p className="mt-2 text-lg font-semibold text-muted-foreground md:text-xl">
-    Become the top <span className="text-accent">1%</span> of the kiln
-  </p>
-
   <p className="mt-4 text-base text-muted-foreground">
     No random tutorials, No confusion, No wasted years
   </p>
@@ -166,25 +169,18 @@ export default function Index() {
       "Master After Effects & CapCut",
       "Project-based learning",
       "Monetize your skills instantly",
-    ].map((item, index) => (
-      <motion.li
+    ].map((item) => (
+      <li
         key={item}
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.45,
-          delay: 0.65 + index * 0.12,
-          ease: [0.22, 1, 0.36, 1],
-        }}
         className="flex items-center gap-3 text-foreground"
       >
         <Check className="h-5 w-5 text-accent flex-shrink-0" />
         <span>{item}</span>
-      </motion.li>
+      </li>
     ))}
   </ul>
 </motion.div>
-
+            </motion.div>
 
             {/* Right column — Creator Asset Hub */}
             <motion.div
@@ -208,13 +204,8 @@ export default function Index() {
                   creators
                 </p>
 
-                <div className="mt-6 flex items-center rounded-full border border-border/60 bg-secondary/40 pl-5 pr-1.5 py-1.5">
-                  <input
-                    type="text"
-                    placeholder="Video Editing Effects, Transitions, Templates..."
-                    className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
-                    readOnly
-                  />
+                <div className="mt-6 flex items-center justify-center rounded-full  bg-none pl-5 pr-1.5 py-1.5">
+                 
                   <Button
                     size="sm"
                     className="rounded-full gradient-bg glow-button px-5 h-9"
@@ -424,7 +415,7 @@ export default function Index() {
             </p>
             <h2 className="text-3xl font-bold md:text-4xl">
               All 3 Courses for just{" "}
-              <span className="gradient-text">₹6,199</span>
+              <span className="gradient-text">₹4,199</span>
             </h2>
             <p className="mt-3 text-muted-foreground">
               Get lifetime access to all courses — one price, unlimited growth.
