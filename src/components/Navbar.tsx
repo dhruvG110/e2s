@@ -19,7 +19,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="container mx-auto flex h-16 items-center px-4 relative">
         
-        {/* Mobile menu button (LEFT) */}
+        {/* Mobile menu button */}
         <button
           className="md:hidden text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -27,20 +27,12 @@ export default function Navbar() {
           {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
 
-        {/* LOGO */}
+        {/* Logo */}
         <Link
           to="/"
-          className="
-            absolute left-1/2 -translate-x-1/2
-            md:static md:translate-x-0
-            flex items-center
-          "
+          className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center"
         >
-          <img
-            src={logoText}
-            alt="Edit2Scale"
-            className="h-8 object-contain"
-          />
+          <img src={logoText} alt="Edit2Scale" className="h-8 object-contain" />
         </Link>
 
         {/* Desktop nav */}
@@ -51,12 +43,14 @@ export default function Navbar() {
           >
             Courses
           </Link>
+
           <Link
             to="/contact"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             Contact Us
           </Link>
+
           {user && (
             <Link
               to="/dashboard"
@@ -67,10 +61,9 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Spacer */}
         <div className="flex-1" />
 
-        {/* Auth buttons (desktop) */}
+        {/* Desktop auth */}
         <div className="hidden md:flex items-center gap-3">
           {user ? (
             <Button
@@ -113,6 +106,15 @@ export default function Navbar() {
           >
             Courses
           </Link>
+
+          <Link
+            to="/contact"
+            className="text-sm py-2"
+            onClick={() => setMobileOpen(false)}
+          >
+            Contact Us
+          </Link>
+
           {user && (
             <Link
               to="/dashboard"
@@ -122,6 +124,7 @@ export default function Navbar() {
               Dashboard
             </Link>
           )}
+
           {user ? (
             <Button
               variant="ghost"
