@@ -92,7 +92,7 @@ export default function Index() {
       <br />
       <br /> */}
       {/* Hero — two-column layout matching reference */}
-<section className="relative min-h-screen pt-60 pb-20">
+<section className="relative min-h-screen pt-52 pb-20">
 <div className="particles-bg">
   {Array.from({ length: 80 }).map((_, i) => (
     <span
