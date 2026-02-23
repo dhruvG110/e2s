@@ -16,10 +16,10 @@ export default function CourseCard({ course }: CourseCardProps) {
     : course.price;
 
   return (
-    <Card
-      className="glow-card cursor-pointer overflow-hidden border-border/50 bg-card hover:border-primary/50 transition-all duration-300"
-      onClick={() => navigate(`/courses/${course.id}`)}
-    >
+   <Card
+  className="shine-card glow-card course-card-hover cursor-pointer overflow-hidden border-border/50 bg-card hover:border-primary/50 transition-all duration-300"
+  onClick={() => navigate(`/courses/${course.id}`)}
+>
       <div className="aspect-video w-full overflow-hidden bg-secondary">
         {course.thumbnail_url ? (
           <img src={course.thumbnail_url} alt={course.title} className="h-full w-full object-cover transition-transform duration-300 hover:scale-105" />

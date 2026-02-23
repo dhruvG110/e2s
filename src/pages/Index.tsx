@@ -92,7 +92,7 @@ export default function Index() {
       <br />
       <br /> */}
       {/* Hero — two-column layout matching reference */}
- <section className="relative min-h-screen overflow-visible pt-44 pb-16">
+<section className="relative min-h-screen pt-60 pb-20">
 <div className="particles-bg">
   {Array.from({ length: 80 }).map((_, i) => (
     <span
@@ -108,141 +108,109 @@ export default function Index() {
     />
   ))}
 </div>
+  <div className="container mx-auto px-6 flex flex-col items-center text-center">
 
+    {/* LOGO / ILLUSTRATION */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 1, delay: 0.45 }}
+      className="mb-6"
+    >
+      <img
+        src={logoImg}
+        alt="Edit2Scale"
+        className="h-[200px] w-[200px] mx-auto"
+      />
+    </motion.div>
 
+    {/* HEADLINE */}
+    <motion.h1
+     
+    
+      className="text-4xl font-semibold leading-tight sm:text-6xl md:text-7xl gradient-text"
+    >
+      WHERE EDITORS
+      <br />
+      BECOME EARNERS
+    </motion.h1>
 
+    {/* SUBTEXT */}
+    <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.55, ease: [0.22, 1, 0.36, 1], }}>
+      
+    <p className="mt-4 text-lg font-semibold text-muted-foreground">
+      Become the top <span className="text-accent">1%</span> of the kiln
+    </p>
 
+    <p className="mt-2 text-sm text-muted-foreground max-w-md">
+      No random tutorials, No confusion, No wasted years
+    </p>
 
-
-
-        {/* <AnimatedGradientBg /> */}
-        <div className="container relative z-10 mx-auto px-6 ">
-          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-16 mt-8 lg:mt-20">
-            {/* Left column */}
-            <motion.div className="flex-1 text-center lg:text-left">
-              {/* Logo */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.45 }}
-                className="mb-[-6.5px]"
-              >
-                <img
-                  src={logoImg}
-                  alt="Edit2Scale"
-                  className="h-[220px] w-[220px] object-contain mx-auto lg:mx-0 "
-                />
-              </motion.div>
-            <motion.div
- 
- 
-  className="mb-8"
->
-  <h1 className="text-[34.2px] font-black mt-[-20px] leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl gradient-text">
-    WHERE EDITORS
-    <br />
-    BECOME EARNERS
-  </h1>
+    {/* CHECKLIST */}
+    <ul className="mt-6 flex flex-col gap-3 text-left">
+      {[
+        "Master After Effects & CapCut",
+        "Project-based learning",
+        "Monetize your skills instantly",
+      ].map((item) => (
+        <li key={item} className="flex items-center gap-3">
+          <Check className="h-5 w-5 text-accent" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
 </motion.div>
+    {/* ASSET HUB CARD (ONLY BOX ALLOWED) */}
+    <motion.div
+     initial={{ opacity: 0, x: 40 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 1, delay: 0.2 }}
+  className="mt-14 w-full max-w-md bg-card/80 backdrop-blur-md rounded-2xl p-6"
+    >
+      <h2 className="text-lg font-bold">
+        Spice up your edits with the
+      </h2>
+      <p className="gradient-text font-bold text-lg">
+        Creator Asset Hub
+      </p>
 
-  
-              <p className="mt-[-20px] text-lg font-semibold text-muted-foreground md:text-xl">
-                Become the top <span className="text-accent">1%</span> of the
-                kiln
-              </p>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Access a handpicked pool of vetted reusable assets from top creators
+      </p>
 
-              <motion.div
-  initial={{ opacity: 0, y: 28 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{
-    duration: 0.55,
-    delay: 0.55,
-    ease: [0.22, 1, 0.36, 1], // premium ease
-  }}
->
-  <p className="mt-4 text-base text-muted-foreground">
-    No random tutorials, No confusion, No wasted years
-  </p>
-
-  <ul className="mt-8 flex flex-col gap-3 text-left mx-auto lg:mx-0 w-fit">
-    {[
-      "Master After Effects & CapCut",
-      "Project-based learning",
-      "Monetize your skills instantly",
-    ].map((item) => (
-      <li
-        key={item}
-        className="flex items-center gap-3 text-foreground"
+      <Button
+        size="sm"
+        className="mt-4 rounded-full gradient-bg glow-button px-6"
       >
-        <Check className="h-5 w-5 text-accent flex-shrink-0" />
-        <span>{item}</span>
-      </li>
-    ))}
-  </ul>
-</motion.div>
-            </motion.div>
+        <Search className="h-4 w-4 mr-1" />
+        Search
+      </Button>
 
-            {/* Right column — Creator Asset Hub */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="w-full max-w-md lg:max-w-lg flex-shrink-0"
-            >
-              <div
-                className="rounded-2xl border border-border/40 p-8 text-center"
-                style={{ backgroundColor: "hsl(0 0% 12%)" }}
-              >
-                <h2 className="text-xl font-bold md:text-2xl">
-                  Spice up your edits with the
-                </h2>
-                <p className="gradient-text text-lg font-bold mt-1 md:text-xl">
-                  Creator Asset Hub
-                </p>
-                <p className="mt-3 text-sm text-muted-foreground">
-                  Access a handpicked pool of vetted reusable assets from top
-                  creators
-                </p>
+      <div className="mt-5 aspect-video rounded-xl bg-secondary/30 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=225&fit=crop"
+          className="w-full h-full object-cover"
+        />
+      </div>
 
-                <div className="mt-6 flex items-center justify-center rounded-full  bg-none pl-5 pr-1.5 py-1.5">
-                 
-                  <Button
-                    size="sm"
-                    className="rounded-full gradient-bg glow-button px-5 h-9"
-                  >
-                    <Search className="h-4 w-4" />
-                    <span>Search</span>
-                  </Button>
-                </div>
+      <p className="mt-4 text-xs text-muted-foreground text-left">
+        Try these searches
+      </p>
 
-                <div className="mt-6 aspect-video rounded-xl bg-secondary/30 border border-border/30 overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=225&fit=crop"
-                    alt="Asset preview"
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
+      <div className="mt-2 flex flex-wrap gap-2">
+        {searchTags.map((tag) => (
+          <span
+            key={tag}
+            className="rounded-full bg-secondary/40 px-3 py-1 text-xs cursor-pointer hover:bg-secondary/60 transition"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+    </motion.div>
 
-                <p className="mt-4 text-xs text-muted-foreground text-left">
-                  Try these searches
-                </p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {searchTags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-border/60 px-3 py-1 text-xs text-foreground hover:border-accent/50 transition-colors cursor-pointer"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
+  </div>
+</section>
       {/* Profile Preview + Buy Now */}
       <section className="py-16">
         <div className="container mx-auto px-6 text-center">

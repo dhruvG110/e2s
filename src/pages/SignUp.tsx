@@ -99,7 +99,7 @@ export default function SignUp() {
               Create Account
             </CardTitle>
             <CardDescription className="text-muted-foreground">
-              Start your learning journey
+              Start your Editing And Earning journey
             </CardDescription>
           </CardHeader>
 

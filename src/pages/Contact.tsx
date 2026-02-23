@@ -32,8 +32,8 @@ export default function Contact() {
             className="space-y-8 text-muted-foreground leading-relaxed text-base md:text-lg"
           >
             <p>
-              Edit2Scale is built for editors and creators who want clarity,
-              direction, and real growth. If you have questions about our
+              <span className="gradient-text">Edit2Scale</span> is built for editors and creators who want <span className="gradient-text">clarity,
+              direction <span className="text-white">and </span>real growth</span>. If you have questions about our
               courses, platform, or future plans, feel free to contact us.
             </p>
 
@@ -48,7 +48,7 @@ export default function Contact() {
               <p>
                 <span className="text-foreground font-medium">Email:</span>{" "}
                 <span className="gradient-text">
-                  support@edit2scale.com
+                  edit2scalecontact@gmail.com
                 </span>
               </p>
 
@@ -72,7 +72,7 @@ export default function Contact() {
             </div>
 
             <p className="text-sm pt-6">
-              We usually respond within 24 hours on business days.
+              We usually respond within 48 hours on business days.
             </p>
           </motion.div>
         </div>
