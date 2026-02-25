@@ -83,8 +83,23 @@ export default function Index() {
 
   return (
     
-<div className="min-h-screen overflow-x-hidden overflow-y-auto bg-background">
+<div className="relative z-10 min-h-screen overflow-x-hidden overflow-y-auto bg-background">
       
+      <div className="particles-bg pointer-events-none">
+        {Array.from({ length: 80 }).map((_, i) => (
+          <span
+            key={i}
+            className={`particle ${i % 6 === 0 ? "big" : "small"} ${
+              i % 4 === 0 ? "square" : "circle"
+            } ${i % 2 === 0 ? "orange" : "purple"}`}
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * -20}s`,
+              animationDuration: `${10 + Math.random() * 10}s`,
+            }}
+          />
+        ))}
+      </div>
       <ParticleBackground />
 {/* 
       <br />
@@ -92,22 +107,7 @@ export default function Index() {
       <br />
       <br /> */}
       {/* Hero — two-column layout matching reference */}
-<section className="relative min-h-screen pt-52 pb-20">
-<div className="particles-bg">
-  {Array.from({ length: 80 }).map((_, i) => (
-    <span
-      key={i}
-      className={`particle ${i % 6 === 0 ? "big" : "small"} ${
-        i % 4 === 0 ? "square" : "circle"
-      } ${i % 2 === 0 ? "orange" : "purple"}`}
-      style={{
-        left: `${Math.random() * 100}%`,
-        animationDelay: `${Math.random() * -20}s`,
-        animationDuration: `${10 + Math.random() * 10}s`,
-      }}
-    />
-  ))}
-</div>
+<section className="relative min-h-screen pt-52 pb-20 z-10">
   <div className="container mx-auto px-6 flex flex-col items-center text-center">
 
     {/* LOGO / ILLUSTRATION */}

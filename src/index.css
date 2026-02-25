@@ -152,6 +152,7 @@
   position: absolute;
   top: -10vh;
   opacity: 0;
+  z-index: 0;
   animation-name: particle-fall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
