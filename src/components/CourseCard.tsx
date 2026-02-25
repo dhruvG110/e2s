@@ -22,7 +22,7 @@ export default function CourseCard({ course }: CourseCardProps) {
 >
       <div className="aspect-video w-full overflow-hidden bg-secondary">
         {course.thumbnail_url ? (
-          <img src={course.thumbnail_url} alt={course.title} className="h-full w-full object-cover transition-transform duration-300 hover:scale-105" />
+          <img src={course.thumbnail_url} alt={course.title} className="h-full w-full object-cover transition-transform duration-300 " />
         ) : (
           <div className="flex h-full w-full items-center justify-center gradient-bg opacity-30">
             <span className="text-3xl font-display font-bold text-primary-foreground/50">{course.title[0]}</span>

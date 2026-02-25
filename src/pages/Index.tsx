@@ -120,7 +120,7 @@ export default function Index() {
       <img
         src={logoImg}
         alt="Edit2Scale"
-        className="h-[200px] w-[200px] mx-auto"
+        className="h-[240px] w-[240px] mx-auto"
       />
     </motion.div>
 

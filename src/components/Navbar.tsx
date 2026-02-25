@@ -17,54 +17,59 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
-      <div className="container mx-auto flex h-16 items-center px-4 relative">
+      {/* MAIN BAR */}
+      <div className="container mx-auto grid grid-cols-3 h-16 items-center px-4">
         
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden text-foreground"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-
-        {/* Logo */}
-        <Link
-          to="/"
-          className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center"
-        >
-          <img src={logoText} alt="Edit2Scale" className="h-8 object-contain" />
-        </Link>
-
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-6 ml-8">
-          <Link
-            to="/courses"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+        {/* LEFT: Mobile menu + Desktop links */}
+        <div className="flex items-center gap-6 justify-start">
+          {/* Mobile menu button */}
+          <button
+            className="md:hidden text-foreground"
+            onClick={() => setMobileOpen(!mobileOpen)}
           >
-            Courses
-          </Link>
+            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
 
-          <Link
-            to="/contact"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Contact Us
-          </Link>
-
-          {user && (
+          {/* Desktop nav links */}
+          <div className="hidden md:flex items-center gap-6">
             <Link
-              to="/dashboard"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              to="/courses"
+              className="text-sm font-medium tracking-tight text-muted-foreground hover:text-foreground transition-colors"
             >
-              Dashboard
+              Courses
             </Link>
-          )}
+
+            <Link
+              to="/contact"
+              className="text-sm font-medium tracking-tight text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Contact Us
+            </Link>
+
+            {user && (
+              <Link
+                to="/dashboard"
+                className="text-sm font-medium tracking-tight text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Dashboard
+              </Link>
+            )}
+          </div>
         </div>
 
-        <div className="flex-1" />
+        {/* CENTER: Logo (perfectly centered) */}
+        <div className="flex justify-center">
+          <Link to="/" className="flex items-center hover:opacity-90 transition-opacity">
+            <img
+              src={logoText}
+              alt="Edit2Scale"
+              className="h-8 object-contain"
+            />
+          </Link>
+        </div>
 
-        {/* Desktop auth */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* RIGHT: Auth buttons */}
+        <div className="hidden md:flex items-center gap-3 justify-end">
           {user ? (
             <Button
               variant="ghost"
@@ -72,7 +77,8 @@ export default function Navbar() {
               onClick={handleSignOut}
               className="gap-1.5 rounded-full"
             >
-              <LogOut className="h-4 w-4" /> Sign Out
+              <LogOut className="h-4 w-4" />
+              Sign Out
             </Button>
           ) : (
             <>
@@ -96,9 +102,9 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* MOBILE MENU */}
       {mobileOpen && (
-        <div className="border-t border-border bg-background p-4 md:hidden flex flex-col gap-3">
+        <div className="md:hidden border-t border-border bg-background p-4 flex flex-col gap-3">
           <Link
             to="/courses"
             className="text-sm py-2"
