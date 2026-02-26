@@ -136,7 +136,7 @@ export default function Index() {
     </motion.h1>
 
     {/* SUBTEXT */}
-    <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.55, ease: [0.22, 1, 0.36, 1], }}>
+    <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.55, ease: [0.22, 1, 0.36, 1], }} className="pt-4">
       
     <p className="mt-4 text-lg font-semibold text-muted-foreground">
       Become the top <span className="text-accent">1%</span> of the kiln
