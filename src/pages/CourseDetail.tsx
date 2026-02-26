@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { PlayCircle, Clock, Tag, CheckCircle } from "lucide-react";
 
-/* ---------------- Razorpay loader ---------------- */
+/* ---------------- Razorpay Loader ---------------- */
 const loadRazorpay = () =>
   new Promise<boolean>((resolve) => {
     if ((window as any).Razorpay) return resolve(true);
@@ -43,6 +43,7 @@ export default function CourseDetail() {
         .select("*")
         .eq("id", id!)
         .single();
+
       if (error) throw error;
       return data;
     },
@@ -58,13 +59,14 @@ export default function CourseDetail() {
         .select("*")
         .eq("course_id", id!)
         .order("order");
+
       if (error) throw error;
       return data;
     },
     enabled: !!id,
   });
 
-  /* ---------------- Purchase check ---------------- */
+  /* ---------------- Purchase ---------------- */
   const {
     data: purchased = false,
     isLoading: purchasedLoading,
@@ -72,16 +74,18 @@ export default function CourseDetail() {
     queryKey: ["purchased", id, user?.id],
     queryFn: async () => {
       if (!user) return false;
-      const { data } = await supabase
+
+      const { data, error } = await supabase
         .from("purchases")
         .select("expires_at")
         .eq("user_id", user.id)
         .eq("course_id", id!)
         .maybeSingle();
 
-      if (!data) return false;
+      if (error || !data) return false;
       if (data.expires_at && new Date(data.expires_at) < new Date())
         return false;
+
       return true;
     },
     enabled: !!id && !!user,
@@ -113,6 +117,7 @@ export default function CourseDetail() {
   /* ---------------- Promo ---------------- */
   const applyPromo = async () => {
     if (!promoCode.trim()) return;
+
     const res = await supabase.functions.invoke("apply-promo-code", {
       body: { code: promoCode.trim().toUpperCase() },
     });
@@ -202,6 +207,7 @@ export default function CourseDetail() {
             {course.thumbnail_url ? (
               <img
                 src={course.thumbnail_url}
+                alt={course.title}
                 className="w-full h-full object-cover"
               />
             ) : (
@@ -215,14 +221,15 @@ export default function CourseDetail() {
           {course.category && (
             <Badge variant="secondary">{course.category}</Badge>
           )}
-
           <p className="mt-4 text-muted-foreground">{course.description}</p>
         </div>
 
         <Card className="sticky top-24">
           <CardContent className="p-6 space-y-4">
             <div>
-              <div className="text-3xl font-bold">₹{finalPrice.toFixed(0)}</div>
+              <div className="text-3xl font-bold">
+                ₹{finalPrice.toFixed(0)}
+              </div>
               {totalDiscount > 0 && (
                 <Badge className="mt-2">{totalDiscount}% OFF</Badge>
               )}
