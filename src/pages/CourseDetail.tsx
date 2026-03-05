@@ -8,12 +8,13 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import { useState } from "react";
-import { PlayCircle, Clock, Tag, CheckCircle } from "lucide-react";
+import { PlayCircle, Clock, CheckCircle } from "lucide-react";
 
 /* ---------------- Razorpay Loader ---------------- */
 const loadRazorpay = () =>
   new Promise<boolean>((resolve) => {
     if ((window as any).Razorpay) return resolve(true);
+
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.onload = () => resolve(true);
@@ -61,7 +62,7 @@ export default function CourseDetail() {
         .order("order");
 
       if (error) throw error;
-      return data;
+      return data ?? [];
     },
     enabled: !!id,
   });
@@ -83,6 +84,7 @@ export default function CourseDetail() {
         .maybeSingle();
 
       if (error || !data) return false;
+
       if (data.expires_at && new Date(data.expires_at) < new Date())
         return false;
 
@@ -91,18 +93,18 @@ export default function CourseDetail() {
     enabled: !!id && !!user,
   });
 
-  /* ---------------- States ---------------- */
+  /* ---------------- Loading ---------------- */
   if (courseLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-muted-foreground">
-        Loading course…
+      <div className="flex min-h-screen items-center justify-center pt-16 text-muted-foreground">
+        Loading course...
       </div>
     );
   }
 
   if (courseError || !course) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-red-500">
+      <div className="flex min-h-screen items-center justify-center pt-16 text-red-500">
         Course not found
       </div>
     );
@@ -201,80 +203,168 @@ export default function CourseDetail() {
   /* ---------------- UI ---------------- */
   return (
     <div className="min-h-screen pt-20">
-      <div className="container mx-auto px-4 py-10 grid lg:grid-cols-3 gap-10">
-        <div className="lg:col-span-2">
-          <div className="aspect-video rounded-xl overflow-hidden bg-secondary mb-6">
-            {course.thumbnail_url ? (
-              <img
-                src={course.thumbnail_url}
-                alt={course.title}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className="flex h-full items-center justify-center">
-                <PlayCircle className="h-16 w-16 text-muted-foreground" />
-              </div>
-            )}
-          </div>
+      <div className="container mx-auto px-4 py-10">
 
-          <h1 className="text-3xl font-bold mb-2">{course.title}</h1>
-          {course.category && (
-            <Badge variant="secondary">{course.category}</Badge>
-          )}
-          <p className="mt-4 text-muted-foreground">{course.description}</p>
+        {/* Header */}
+        <div className="mb-10">
+          <h1 className="font-display text-4xl font-bold mb-2">
+            Course <span className="gradient-text">Details</span>
+          </h1>
+
+          <p className="text-muted-foreground">
+            Learn everything about this course before enrolling
+          </p>
         </div>
 
-        <Card className="sticky top-24">
-          <CardContent className="p-6 space-y-4">
-            <div>
-              <div className="text-3xl font-bold">
-                ₹{finalPrice.toFixed(0)}
-              </div>
-              {totalDiscount > 0 && (
-                <Badge className="mt-2">{totalDiscount}% OFF</Badge>
+        <div className="grid gap-10 lg:grid-cols-3">
+
+          {/* LEFT */}
+          <div className="lg:col-span-2 space-y-6">
+
+            {/* Thumbnail */}
+            <div className="aspect-video overflow-hidden rounded-xl border border-border bg-secondary">
+              {course.thumbnail_url ? (
+                <img
+                  src={course.thumbnail_url}
+                  alt={course.title}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div className="flex h-full items-center justify-center">
+                  <PlayCircle className="h-16 w-16 text-muted-foreground" />
+                </div>
               )}
             </div>
 
-            {!purchased && (
-              <div className="flex gap-2">
-                <Input
-                  placeholder="Promo code"
-                  value={promoCode}
-                  disabled={promoApplied}
-                  onChange={(e) => setPromoCode(e.target.value)}
-                />
-                <Button
-                  variant="outline"
-                  onClick={applyPromo}
-                  disabled={promoApplied}
-                >
-                  {promoApplied ? <CheckCircle /> : "Apply"}
-                </Button>
-              </div>
-            )}
+            {/* Title */}
+            <div>
+              <h2 className="text-3xl font-bold">{course.title}</h2>
 
-            {purchasedLoading ? (
-              <Button disabled>Checking access…</Button>
-            ) : purchased ? (
-              <Button onClick={() => navigate(`/course/${id}/learn`)}>
-                Continue Learning
-              </Button>
-            ) : (
-              <Button onClick={handleBuy}>Buy Now</Button>
-            )}
+              {course.category && (
+                <Badge className="mt-2">{course.category}</Badge>
+              )}
 
-            <div className="text-sm text-muted-foreground space-y-1">
-              <div className="flex gap-2">
-                <PlayCircle className="h-4 w-4" />
-                {lessons.length} lessons
-              </div>
-              <div className="flex gap-2">
-                <Clock className="h-4 w-4" />
-                {lessons.reduce((a, l) => a + (l.duration ?? 0), 0)} min
-              </div>
+              <p className="mt-4 text-muted-foreground">
+                {course.description}
+              </p>
             </div>
-          </CardContent>
-        </Card>
+
+            {/* Lessons */}
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-4">
+                  Course Content
+                </h3>
+
+                {lessons.length === 0 ? (
+                  <p className="text-muted-foreground">
+                    No lessons yet
+                  </p>
+                ) : (
+                  <div className="space-y-3">
+                    {lessons.map((lesson: any, i) => (
+                      <div
+                        key={lesson.id}
+                        className="flex items-center justify-between border-b pb-3"
+                      >
+                        <div className="flex items-center gap-3">
+                          <PlayCircle className="h-4 w-4 text-muted-foreground" />
+                          <span>
+                            {i + 1}. {lesson.title}
+                          </span>
+                        </div>
+
+                        <span className="text-sm text-muted-foreground">
+                          {lesson.duration ?? 0} min
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* RIGHT */}
+          <div>
+            <Card className="sticky top-24">
+              <CardContent className="p-6 space-y-6">
+
+                {/* Price */}
+                <div>
+                  <div className="text-3xl font-bold">
+                    ₹{finalPrice.toFixed(0)}
+                  </div>
+
+                  {totalDiscount > 0 && (
+                    <Badge className="mt-2">
+                      {totalDiscount}% OFF
+                    </Badge>
+                  )}
+                </div>
+
+                {/* Promo */}
+                {!purchased && (
+                  <div className="flex gap-2">
+                    <Input
+                      placeholder="Promo code"
+                      value={promoCode}
+                      disabled={promoApplied}
+                      onChange={(e) => setPromoCode(e.target.value)}
+                    />
+
+                    <Button
+                      variant="outline"
+                      onClick={applyPromo}
+                      disabled={promoApplied}
+                    >
+                      {promoApplied ? <CheckCircle /> : "Apply"}
+                    </Button>
+                  </div>
+                )}
+
+                {/* Buy */}
+                {purchasedLoading ? (
+                  <Button disabled className="w-full">
+                    Checking access…
+                  </Button>
+                ) : purchased ? (
+                  <Button
+                    className="w-full"
+                    onClick={() => navigate(`/course/${id}/learn`)}
+                  >
+                    Continue Learning
+                  </Button>
+                ) : (
+                  <Button className="w-full" onClick={handleBuy}>
+                    Buy Now
+                  </Button>
+                )}
+
+                {/* Info */}
+                <div className="space-y-2 border-t pt-4 text-sm text-muted-foreground">
+
+                  <div className="flex items-center gap-2">
+                    <PlayCircle className="h-4 w-4" />
+                    {lessons.length} lessons
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-4 w-4" />
+                    {lessons.reduce(
+                      (a: number, l: any) => a + (l.duration ?? 0),
+                      0
+                    )}{" "}
+                    min total
+                  </div>
+
+                </div>
+
+              </CardContent>
+            </Card>
+          </div>
+
+        </div>
       </div>
     </div>
   );
