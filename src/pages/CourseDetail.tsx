@@ -93,7 +93,6 @@ export default function CourseDetail() {
     enabled: !!id && !!user,
   });
 
-  /* ---------------- Loading ---------------- */
   if (courseLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center pt-16 text-muted-foreground">
@@ -191,7 +190,7 @@ export default function CourseDetail() {
             navigate(`/course/${id}/learn`);
           }
         },
-        theme: { color: "#8b5cf6" },
+        theme: { color: "#ff5c00" },
       });
 
       rzp.open();
@@ -200,17 +199,14 @@ export default function CourseDetail() {
     }
   };
 
-  /* ---------------- UI ---------------- */
   return (
     <div className="min-h-screen pt-20">
       <div className="container mx-auto px-4 py-10">
 
-        {/* Header */}
         <div className="mb-10">
           <h1 className="font-display text-4xl font-bold mb-2">
             Course <span className="gradient-text">Details</span>
           </h1>
-
           <p className="text-muted-foreground">
             Learn everything about this course before enrolling
           </p>
@@ -218,10 +214,8 @@ export default function CourseDetail() {
 
         <div className="grid gap-10 lg:grid-cols-3">
 
-          {/* LEFT */}
           <div className="lg:col-span-2 space-y-6">
 
-            {/* Thumbnail */}
             <div className="aspect-video overflow-hidden rounded-xl border border-border bg-secondary">
               {course.thumbnail_url ? (
                 <img
@@ -236,7 +230,6 @@ export default function CourseDetail() {
               )}
             </div>
 
-            {/* Title */}
             <div>
               <h2 className="text-3xl font-bold">{course.title}</h2>
 
@@ -249,7 +242,6 @@ export default function CourseDetail() {
               </p>
             </div>
 
-            {/* Lessons */}
             <Card>
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold mb-4">
@@ -285,25 +277,22 @@ export default function CourseDetail() {
             </Card>
           </div>
 
-          {/* RIGHT */}
           <div>
-            <Card className="sticky top-24">
+            <Card className="sticky top-24 border-border/50">
               <CardContent className="p-6 space-y-6">
 
-                {/* Price */}
                 <div>
-                  <div className="text-3xl font-bold">
+                  <div className="text-3xl font-bold gradient-text">
                     ₹{finalPrice.toFixed(0)}
                   </div>
 
                   {totalDiscount > 0 && (
-                    <Badge className="mt-2">
+                    <Badge className="mt-2 gradient-primary text-white border-0">
                       {totalDiscount}% OFF
                     </Badge>
                   )}
                 </div>
 
-                {/* Promo */}
                 {!purchased && (
                   <div className="flex gap-2">
                     <Input
@@ -323,25 +312,26 @@ export default function CourseDetail() {
                   </div>
                 )}
 
-                {/* Buy */}
                 {purchasedLoading ? (
                   <Button disabled className="w-full">
                     Checking access…
                   </Button>
                 ) : purchased ? (
                   <Button
-                    className="w-full"
+                    className="w-full gradient-primary text-white hover:opacity-90"
                     onClick={() => navigate(`/course/${id}/learn`)}
                   >
                     Continue Learning
                   </Button>
                 ) : (
-                  <Button className="w-full" onClick={handleBuy}>
+                  <Button
+                    className="w-full gradient-primary text-white hover:opacity-90"
+                    onClick={handleBuy}
+                  >
                     Buy Now
                   </Button>
                 )}
 
-                {/* Info */}
                 <div className="space-y-2 border-t pt-4 text-sm text-muted-foreground">
 
                   <div className="flex items-center gap-2">
@@ -354,8 +344,7 @@ export default function CourseDetail() {
                     {lessons.reduce(
                       (a: number, l: any) => a + (l.duration ?? 0),
                       0
-                    )}{" "}
-                    min total
+                    )} min total
                   </div>
 
                 </div>
