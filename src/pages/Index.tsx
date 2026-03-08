@@ -15,7 +15,23 @@ import {
 import { motion } from "framer-motion";
 import { useState } from "react";
 import logoImg from "@/assets/logo_image.png";
-
+const testimonialsText = [
+  {
+    name: "Priyanshu Verma",
+    role: "Content Creator · YouTube Educator",
+    text: '"I always struggled with CapCut consistency. MarketMix gave me real-world workflows and templates that instantly improved my edits and confidence."',
+  },
+  {
+    name: "Rahul Sharma",
+    role: "Freelance Video Editor",
+    text: '"Edit2Scale completely transformed my editing career. I went from struggling to find clients to having a waitlist within 3 months!"',
+  },
+  {
+    name: "Priya Patel",
+    role: "Content Creator",
+    text: '"The Alight Motion course is insanely detailed. I learned techniques that took my reels from 100 views to 100K+ views."',
+  },
+];
 const courses = [
   {
     title: "CapCut Pro Editing",
@@ -251,8 +267,69 @@ export default function Index() {
 
         </div>
       </section>
-      <section className="py-20"> <div className="container mx-auto px-6"> <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10" > <h2 className="text-3xl font-bold md:text-4xl"> Helping creators find the{" "} <span className="gradient-text">exact skills they need</span> </h2> </motion.div>
-<motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative mx-auto max-w-lg" > <div className="rounded-2xl border border-border/50 bg-card/80 p-8"> <p className="text-muted-foreground leading-relaxed text-sm"> {testimonials[currentTestimonial].text} </p> <div className="mt-6 flex items-center gap-3"> <div className="h-10 w-10 rounded-full gradient-bg" /> <div className="text-left"> <p className="font-semibold text-sm"> {testimonials[currentTestimonial].name} </p> <p className="text-xs text-muted-foreground"> {testimonials[currentTestimonial].role} </p> </div> </div> </div> <button onClick={prevTestimonial} className="absolute left-0 top-1/2 -translate-x-6 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors" > <ChevronLeft className="h-6 w-6" /> </button> <button onClick={nextTestimonial} className="absolute right-0 top-1/2 translate-x-6 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors" > <ChevronRight className="h-6 w-6" /> </button> </motion.div> </div> </section>
+
+      <section className="py-20">
+  <div className="container mx-auto px-6">
+
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="text-center mb-10"
+    >
+      <h2 className="text-3xl font-bold md:text-4xl">
+        Helping creators find the{" "}
+        <span className="gradient-text">exact skills they need</span>
+      </h2>
+    </motion.div>
+
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="relative mx-auto max-w-lg"
+    >
+
+      <div className="rounded-2xl border border-border/50 bg-card/80 p-8">
+
+        <p className="text-muted-foreground leading-relaxed text-sm">
+          {testimonialsText[currentTestimonial].text}
+        </p>
+
+        <div className="mt-6 flex items-center gap-3">
+          <div className="h-10 w-10 rounded-full gradient-bg" />
+
+          <div className="text-left">
+            <p className="font-semibold text-sm">
+              {testimonialsText[currentTestimonial].name}
+            </p>
+
+            <p className="text-xs text-muted-foreground">
+              {testimonialsText[currentTestimonial].role}
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <button
+        onClick={prevTestimonial}
+        className="absolute left-0 top-1/2 -translate-x-6 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+      >
+        <ChevronLeft className="h-6 w-6" />
+      </button>
+
+      <button
+        onClick={nextTestimonial}
+        className="absolute right-0 top-1/2 translate-x-6 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+      >
+        <ChevronRight className="h-6 w-6" />
+      </button>
+
+    </motion.div>
+
+  </div>
+</section>
       {/* COURSES */}
 
       <section className="py-16">
@@ -336,4 +413,5 @@ export default function Index() {
     </div>
   );
 }
+
 
