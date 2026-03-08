@@ -18,14 +18,6 @@ import logoImg from "@/assets/logo_image.png";
 
 const courses = [
   {
-    title: "Aligt Motion",
-    description: "Motion graphics, transitions, VFX & real-world projects",
-    image:
-      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop",
-    originalPrice: "₹6999",
-    price: "₹2,999",
-  },
-  {
     title: "CapCut Pro Editing",
     description:
       "Professional video editing, transitions, effects & color grading",
@@ -33,6 +25,14 @@ const courses = [
       "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=400&fit=crop",
     originalPrice: "₹4999",
     price: "₹1,999",
+  },
+  {
+    title: "Aligt Motion",
+    description: "Motion graphics, transitions, VFX & real-world projects",
+    image:
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop",
+    originalPrice: "₹6999",
+    price: "₹2,999",
   },
   {
     title: "How to Find Clients and Scale",
@@ -143,15 +143,15 @@ export default function Index() {
     </p>
 
     <p className="mt-2 text-sm text-muted-foreground max-w-md">
-      No random tutorials, No confusion, No wasted years
+     A System dedicated to turn editing into a career.
     </p>
 
     {/* CHECKLIST */}
     <ul className="mt-6 flex flex-col gap-3 text-left">
       {[
-        "Master After Effects & CapCut",
-        "Project-based learning",
-        "Monetize your skills instantly",
+        "Master Alight Motion & CapCut",
+        "Real project based learning",
+        "Learn client acquistion & monetization",
       ].map((item) => (
         <li key={item} className="flex items-center gap-3">
           <Check className="h-5 w-5 text-accent" />
@@ -168,23 +168,15 @@ export default function Index() {
   className="mt-14 w-full max-w-md bg-card/80 backdrop-blur-md rounded-2xl p-6"
     >
       <h2 className="text-lg font-bold">
-        Spice up your edits with the
+        Watch this before
       </h2>
       <p className="gradient-text font-bold text-lg">
-        Creator Asset Hub
+        Buying the course
       </p>
 
       <p className="mt-2 text-sm text-muted-foreground">
         Access a handpicked pool of vetted reusable assets from top creators
       </p>
-
-      <Button
-        size="sm"
-        className="mt-4 rounded-full gradient-bg glow-button px-6"
-      >
-        <Search className="h-4 w-4 mr-1" />
-        Search
-      </Button>
 
       <div className="mt-5 aspect-video rounded-xl bg-secondary/30 overflow-hidden">
         <img
@@ -194,7 +186,7 @@ export default function Index() {
       </div>
 
       <p className="mt-4 text-xs text-muted-foreground text-left">
-        Try these searches
+        Try these effects
       </p>
 
       <div className="mt-2 flex flex-wrap gap-2">
@@ -210,40 +202,65 @@ export default function Index() {
     </motion.div>
 
   </div>
-</section>
-      {/* Profile Preview + Buy Now */}
-      <section className="py-16">
-        <div className="container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mx-auto max-w-sm"
+<section className="py-14">
+  <div className="container mx-auto px-4 sm:px-6 text-center">
+
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="mx-auto max-w-[240px] sm:max-w-xs md:max-w-sm"
+    >
+
+      <div className="rounded-2xl border border-border/50 bg-card/80 p-2 sm:p-3">
+
+        <div className="relative aspect-[9/16] max-h-[420px] sm:max-h-[460px] md:max-h-none rounded-xl overflow-hidden border border-border/30">
+
+          <video
+            src={testimonials[currentTestimonial]}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          />
+
+          <button
+            onClick={prevTestimonial}
+            className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition"
           >
-            <div className="rounded-2xl border border-border/50 bg-card/80 p-6">
-              <div className="aspect-square rounded-xl bg-secondary/30 border border-border/30 flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">
-                  Profile Preview
-                </span>
-              </div>
-            </div>
+            <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
+          </button>
 
-            <p className="mt-8 text-sm text-accent flex items-center justify-center gap-2">
-              <ArrowDown className="h-4 w-4" />
-              Learn faster with curated creator profiles
-            </p>
-            <ArrowDown className="mx-auto mt-2 h-5 w-5 text-accent/50" />
+          <button
+            onClick={nextTestimonial}
+            className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition"
+          >
+            <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
+          </button>
 
-            <Button
-              size="lg"
-              className="mt-6 rounded-full gradient-bg glow-button text-lg px-10"
-              onClick={() => navigate("/signup")}
-            >
-              Buy Now
-            </Button>
-          </motion.div>
         </div>
-      </section>
+      </div>
+
+      <p className="mt-6 text-xs sm:text-sm text-accent flex items-center justify-center gap-2">
+        <ArrowDown className="h-3 w-3 sm:h-4 sm:w-4" />
+        See how creators are transforming their editing careers
+      </p>
+
+      <ArrowDown className="mx-auto mt-2 h-4 w-4 sm:h-5 sm:w-5 text-accent/50" />
+
+      <Button
+        size="lg"
+        className="mt-5 rounded-full gradient-bg glow-button text-base sm:text-lg px-8 sm:px-10"
+        onClick={() => navigate("/signup")}
+      >
+        Buy Now
+      </Button>
+
+    </motion.div>
+
+  </div>
+</section>
 
       {/* Testimonials */}
       <section className="py-20">
@@ -403,3 +420,4 @@ export default function Index() {
     </div>
   );
 }
+
