@@ -251,7 +251,8 @@ export default function Index() {
 
         </div>
       </section>
-
+      <section className="py-20"> <div className="container mx-auto px-6"> <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10" > <h2 className="text-3xl font-bold md:text-4xl"> Helping creators find the{" "} <span className="gradient-text">exact skills they need</span> </h2> </motion.div>
+<motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative mx-auto max-w-lg" > <div className="rounded-2xl border border-border/50 bg-card/80 p-8"> <p className="text-muted-foreground leading-relaxed text-sm"> {testimonials[currentTestimonial].text} </p> <div className="mt-6 flex items-center gap-3"> <div className="h-10 w-10 rounded-full gradient-bg" /> <div className="text-left"> <p className="font-semibold text-sm"> {testimonials[currentTestimonial].name} </p> <p className="text-xs text-muted-foreground"> {testimonials[currentTestimonial].role} </p> </div> </div> </div> <button onClick={prevTestimonial} className="absolute left-0 top-1/2 -translate-x-6 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors" > <ChevronLeft className="h-6 w-6" /> </button> <button onClick={nextTestimonial} className="absolute right-0 top-1/2 translate-x-6 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors" > <ChevronRight className="h-6 w-6" /> </button> </motion.div> </div> </section>
       {/* COURSES */}
 
       <section className="py-16">
@@ -320,9 +321,19 @@ export default function Index() {
           </div>
         </div>
       </section>
-
+<section className="py-16">
+  <div className="container mx-auto px-6 text-center">
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.95 }} 
+      whileInView={{ opacity: 1, scale: 1 }} 
+      viewport={{ once: true }} 
+      className="mx-auto max-w-2xl rounded-2xl border border-accent/30 bg-accent/5 p-8" 
+      style={{ boxShadow: "0 0 40px hsl(25 95% 55% / 0.1), 0 0 80px hsl(270 80% 65% / 0.05)", }} > 
+      <p className="text-sm font-medium text-accent uppercase tracking-wider mb-2"> Complete Bundle </p> 
+      <h2 className="text-3xl font-bold md:text-4xl"> All 3 Courses for just{" "} <span className="gradient-text">₹4,499</span> </h2> <p className="mt-3 text-muted-foreground"> Get lifetime access to all courses — one price, unlimited growth. </p> <Button size="lg" className="gradient-bg glow-button text-lg px-10 mt-6 rounded-full" onClick={() => navigate("/signup")} > Get the Bundle <ArrowRight className="ml-2 h-5 w-5" /> </Button> </motion.div> </div> </section>
       <Footer />
 
     </div>
   );
 }
+
