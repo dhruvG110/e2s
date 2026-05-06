@@ -899,18 +899,9 @@
   pointer-events: none;
 }
 
-/* ═══════════════════════════════
-   KEYFRAMES
-   ═══════════════════════════════ */
-
-@keyframes shine-sweep {
-  0% {
-    left: -75%;
-  }
-  100% {
-    left: 125%;
-  }
-}
+/* ===============================
+   CYLINDRICAL FALL ANIMATION
+================================ */
 
 @keyframes particle-fall {
   0% {
@@ -1134,27 +1125,5 @@
     margin-top: -200px;
     margin-left: -200px;
     opacity: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .particles-bg {
-    display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .cinematic-bg,
-  .particles-bg,
-  .marquee-track,
-  .gradient-text-shimmer,
-  .animated-border::before,
-  .glow-border-orbit::before,
-  .section-kicker::before {
-    animation: none !important;
   }
 }
