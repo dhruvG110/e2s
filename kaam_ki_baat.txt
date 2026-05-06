@@ -1,0 +1,18 @@
+const creatorPreviewVideoSrc = "/videos/creator-preview.mp4";
+
+yeh line me video ka path insert krna 
+
+video tag k liye 
+
+<video controls preload="metadata" poster="...">
+  <source src={creatorPreviewVideoSrc} type="video/mp4" />
+</video> 
+
+ yeh line of code hai 
+
+
+ ///////////////
+
+
+ admin add testimonial ke liye table create krna hai kr lena 
+ 

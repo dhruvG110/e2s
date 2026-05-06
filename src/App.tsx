@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import Navbar from "@/components/Navbar";
+import AnimatedPage from "@/components/AnimatedPage";
 import Index from "./pages/Index";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -27,16 +28,16 @@ const App = () => (
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/courses/:id" element={<CourseDetail />} />
-            <Route path="/course/:id/learn" element={<CoursePlayer />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/" element={<AnimatedPage><Index /></AnimatedPage>} />
+            <Route path="/signin" element={<AnimatedPage><SignIn /></AnimatedPage>} />
+            <Route path="/signup" element={<AnimatedPage><SignUp /></AnimatedPage>} />
+            <Route path="/courses" element={<AnimatedPage><Courses /></AnimatedPage>} />
+            <Route path="/courses/:id" element={<AnimatedPage><CourseDetail /></AnimatedPage>} />
+            <Route path="/course/:id/learn" element={<AnimatedPage><CoursePlayer /></AnimatedPage>} />
+            <Route path="/dashboard" element={<AnimatedPage><Dashboard /></AnimatedPage>} />
+            <Route path="/admin" element={<AnimatedPage><Admin /></AnimatedPage>} />
+            <Route path="*" element={<AnimatedPage><NotFound /></AnimatedPage>} />
+            <Route path="/contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
